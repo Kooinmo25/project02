@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 import { Row } from "react-bootstrap";
 
-function GetProductList() {
+
+
+function GetProductList({ sortNum, setSortNum}) {
+
+
 
     const clientId = "HV5h7QtkYL9s3BHx903z";
     const clientSecret = "LLJMu3rRAm";
@@ -19,10 +23,13 @@ function GetProductList() {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-    }, [])
+        console.log("sortNum:", sortNum);
+
+    }, [sortNum])
 
     return (
-        <Row xs={1} md={2} lg={4} className="g-4">
+        
+        <Row xs={1} md={2} lg={sortNum} className="g-4">
             {list.map((item, index) => (
                 <ProductList
                     key={index}
@@ -31,6 +38,7 @@ function GetProductList() {
                     price={item.lprice}
                 />
             ))}
+            
         </Row>
     )
 }

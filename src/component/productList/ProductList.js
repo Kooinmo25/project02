@@ -19,7 +19,7 @@ function ProductList(props) {
                         <Card.Img variant="top" src={props.image} />
                         <Card.Body>
                             <Card.Title className="text-truncate">{titleDel}</Card.Title>
-                            <Card.Text>
+                            <Card.Text style={{fontWeight: "bold", fontSize: "20px"}}>
                                 {props.price} 원
                             </Card.Text>
                         </Card.Body>
