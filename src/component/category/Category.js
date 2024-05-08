@@ -52,6 +52,8 @@ function Category() {
                     <Accordion.Header>가격</Accordion.Header>
                     <Accordion.Body>
                         <button onClick={() => handleCategoryClick('가격')}>1만원 ~ 2만원</button>
+                        <button onClick={() => handleCategoryClick('가격')}>2만원 ~ 4만원</button>
+                        <button onClick={() => handleCategoryClick('가격')}>4만원 ~ 8만원</button>
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
