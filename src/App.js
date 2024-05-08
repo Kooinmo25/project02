@@ -1,5 +1,6 @@
-import Layout from "./component/common/Layout";
+/*eslint-disable*/
 
+import Layout from "./component/common/Layout";
 
 function App() {
   return (
