@@ -1,10 +1,11 @@
+import Filter from "../Filter";
 
-import Category from './component/Category';
+
 
 function App() {
   return (
     <>
-      <Category />
+      <Filter />
     </>
   );
 }
