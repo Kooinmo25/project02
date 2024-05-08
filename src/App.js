@@ -1,10 +1,11 @@
-import './App.css';
-import ProductCompoReturn from './component/productList/ProductCompoReturn';
+import React from 'react';
+import Cartreturn from './component/Total';
+
 
 function App() {
   return (
-    <div className="App">
-      <ProductCompoReturn />
+    <div>
+    <Cartreturn/>
     </div>
   );
 }
