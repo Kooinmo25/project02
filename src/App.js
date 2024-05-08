@@ -1,12 +1,18 @@
-/*eslint-disable*/
+import Filter from "./component/category/Filter";
+import Layout from "./component/common/Layout";
+import ProductCompoReturn from "./component/productList/ProductCompoReturn";
+import Cartreturn from "./component/shoppingcart/Total";
 
-import './App.css';
-import Layout from './component/common/Layout';
+
+
 
 function App() {
   return (
-    <div className="App">
-      <Layout />
+    <div>
+    <Cartreturn />
+    <Filter />
+    <ProductCompoReturn />
+    <Layout />
     </div>
   );
 }
