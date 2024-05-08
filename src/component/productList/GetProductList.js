@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 import { Row } from "react-bootstrap";
+import Col from 'react-bootstrap/Col';
 
 
 
@@ -14,6 +15,9 @@ function GetProductList({ sortNum, pageNum}) {
     const [list, setList] = useState([]);
 
     useEffect(() => {
+        
+
+        
         fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
@@ -33,14 +37,15 @@ function GetProductList({ sortNum, pageNum}) {
         
         <Row xs={1} md={2} lg={sortNum} className="g-4">
             {list.map((item, index) => (
+            <Col>
                 <ProductList
                     key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
                 />
+            </Col>
             ))}
-            
         </Row>
     )
 }
