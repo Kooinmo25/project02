@@ -1,11 +1,11 @@
 import Stack from 'react-bootstrap/Stack';
 import GlobalNav from '../common/GlobalNav';
-import ProductList from '../ProductList';
-import Category from '../Category';
-import Shoppingcart from '../Shoppingcart';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Footer from './Footer';
 import Welcome from '../home/Welcome';
+import ProductCompoReturn from '../productList/ProductCompoReturn';
+import Filter from '../category/Filter';
+import Cartreturn from '../shoppingcart/Total';
 
 
 function Layout() {
@@ -16,9 +16,9 @@ function Layout() {
                 <BrowserRouter>
                     <Routes>
                         <Route index element={<Welcome />} />
-                        <Route path="/productlist" element={<ProductList />} />
-                        <Route path="/category" element={<Category />} />
-                        <Route path="/shoppingcart" element={<Shoppingcart />} />
+                        <Route path="/productlist" element={<ProductCompoReturn />} />
+                        <Route path="/category" element={<Filter />} />
+                        <Route path="/shoppingcart" element={<Cartreturn />} />
                     </Routes>
                 </BrowserRouter>
             </div>
