@@ -4,7 +4,7 @@ import { Row } from "react-bootstrap";
 
 
 
-function GetProductList({ sortNum, setSortNum}) {
+function GetProductList({ sortNum, pageNum}) {
 
 
 
@@ -14,7 +14,7 @@ function GetProductList({ sortNum, setSortNum}) {
     let [list, setList] = useState([]);
 
     useEffect(() => {
-        fetch("/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=100&start=1", {
+        fetch(`/v1/search/shop?query=남자수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": clientId,
@@ -23,9 +23,11 @@ function GetProductList({ sortNum, setSortNum}) {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-        console.log("sortNum:", sortNum);
+        console.log("sortNum:", sortNum)
+        console.log("pageNum:", pageNum)
+        console.log(list)
 
-    }, [sortNum])
+    }, [sortNum, pageNum])
 
     return (
         
