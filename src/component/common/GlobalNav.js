@@ -26,10 +26,10 @@ function GlobalNav() {
               
               <Offcanvas.Body>
                 <Nav className="justify-content-between flex-grow-1 pe-3">
-                  <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="productlist">ProductList</Nav.Link>
-                  <Nav.Link href="category">Category</Nav.Link>
-                  <Nav.Link href="shoppingcart">Shoppingcart</Nav.Link>
+                  <Nav.Link href="/">홈</Nav.Link>
+                  <Nav.Link href="productlist">상품</Nav.Link>
+                  <Nav.Link href="category">카테고리</Nav.Link>
+                  <Nav.Link href="shoppingcart">장바구니</Nav.Link>
                 </Nav>
 
               <Form className="d-flex">
