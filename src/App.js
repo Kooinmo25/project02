@@ -1,12 +1,10 @@
-/*eslint-disable*/
-
 import './App.css';
-import Layout from './component/common/Layout';
+import ProductCompoReturn from './component/productList/ProductCompoReturn';
 
 function App() {
   return (
     <div className="App">
-      <Layout />
+      <ProductCompoReturn />
     </div>
   );
 }
