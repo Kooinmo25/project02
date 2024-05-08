@@ -8,7 +8,7 @@ function Pages({setPageNum}) {
 
     return (
         <div>
-            <button>1</button>
+            <button onClick={() => pageChange(1)}>1</button>
             <button onClick={() => pageChange(20)}>2</button>
             <button onClick={() => pageChange(40)}>3</button>
             <button onClick={() => pageChange(60)}>4</button>
