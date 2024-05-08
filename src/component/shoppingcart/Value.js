@@ -3,6 +3,7 @@ import Stack from 'react-bootstrap/Stack';
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
+
 function ValueReturn(props) {
 
     const titledel = removebtag(props.title);

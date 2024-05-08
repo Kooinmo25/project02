@@ -7,7 +7,7 @@ function ShoppingCart() {
     const [products, setProducts] = useState([]);
 
     return (
-        <>
+        <div className="products-container">
             {products.map((item, index) => (
                 <ValueReturn
                     key={index}
@@ -15,8 +15,9 @@ function ShoppingCart() {
                     image={item.image}
                     price={item.lprice} />
             ))}
-        </>
+        </div>
     );
 }
 
 export default ShoppingCart;
+
