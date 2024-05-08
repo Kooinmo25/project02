@@ -14,7 +14,7 @@ function GetProductList({ sortNum, pageNum}) {
     let [list, setList] = useState([]);
 
     useEffect(() => {
-        fetch(`/v1/search/shop?query=남자수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
+        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": clientId,
