@@ -1,11 +1,12 @@
-import React from 'react';
-import Cartreturn from './component/Total';
+import Filter from "../Filter";
+
 
 
 function App() {
   return (
     <div>
     <Cartreturn/>
+    <Filter />
     </div>
   );
 }
