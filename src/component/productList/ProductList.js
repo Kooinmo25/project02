@@ -1,7 +1,10 @@
+import React, { useContext, useEffect } from 'react';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
-import { useContext, useState } from 'react';
+
+
+import CartContext from './CartContext';
 
 
 function removebtag(text) {
@@ -12,28 +15,28 @@ function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-
 function ProductList(props) {
-    const {setAddToCart} = useContext();
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
-
-
-
+    const { cartList, setCartList } = useContext(CartContext);
+    
     const handleAddToCart = () => {
-        setAddToCart({
-            title: props.title,
-            image: props.image,
-            price: props.price
-        });
+        const item = { title: props.title, image: props.image, price: props.price };
+        const updatedCartList = [...cartList, item];
+        setCartList(updatedCartList);
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
     };
 
-
-
+    useEffect(() => {
+        const savedCartList = JSON.parse(localStorage.getItem('cartList'));
+        if (savedCartList) {
+            setCartList(savedCartList);
+        }
+    }, [setCartList]);
 
     return (
 
-        <Col className='productList' style={{ width: '100%', height: "40rem" }}>
+        <Col className='productList' style={{ width: '30%', height: "40rem" }}>
             <Card>
                 <Card.Img variant="top" src={props.image} />
                 <Card.Body>
@@ -47,7 +50,6 @@ function ProductList(props) {
                 </Card.Body>
             </Card>
         </Col>
-
     );
 }
 
