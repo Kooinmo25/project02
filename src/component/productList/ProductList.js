@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 
 function removebtag(text) {
@@ -14,18 +14,19 @@ function addCommas(num) {
 
 
 function ProductList(props) {
+    const {setAddToCart} = useContext();
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
 
-    // const [addToCart, setAddToCart] = useState()
 
 
-    // const setAddToCart = {
-    //     title: props.title,
-    //     image: props.image,
-    //     price: props.price
-    // };
-    // 장바구니에 추가
+    const handleAddToCart = () => {
+        setAddToCart({
+            title: props.title,
+            image: props.image,
+            price: props.price
+        });
+    };
 
 
 
@@ -41,7 +42,7 @@ function ProductList(props) {
                         {commas} 원
                     </Card.Text>
                     <Card.Text>
-                        <button>장바구니 담기</button>
+                        <button onClick={handleAddToCart}>장바구니 담기</button>
                     </Card.Text>
                 </Card.Body>
             </Card>
