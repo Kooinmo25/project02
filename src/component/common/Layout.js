@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalNav from '../common/GlobalNav';
 import Footer from './Footer';
-import Welcome from '../home/Welcome';
+import Welcome from '../home/welcome';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import Cartreturn from '../shoppingcart/Total';
