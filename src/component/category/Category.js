@@ -11,6 +11,12 @@ function Category() {
         setBrand(category); // 브랜드 상태 업데이트
     };
 
+    // document.querySelector(".button-container").addEventListener("click", function (e) {
+    //     if (e.target && e.target.nodeName === "BUTTON") {
+    //         console.log(e.target.textContent);
+    //     }
+    // });
+
     return (
         <>
             <Get brand={brand} />
