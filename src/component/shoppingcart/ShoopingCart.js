@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+// ShoopingCart.js
+import React from 'react';
 import ValueReturn from './Value';
+import ProductList from '../productList/ProductList';
 
-
-
-function ShoppingCart() {
-    const [products, setProducts] = useState([]);
+function ShoppingCart({ list, setList }) {
 
     return (
         <>
-            {products.map((item, index) => (
+            <ProductList />
+            {list.map((item, index) => (
                 <ValueReturn
                     key={index}
                     title={item.title}
                     image={item.image}
-                    price={item.lprice} />
+                    price={item.price}
+                />
             ))}
         </>
     );

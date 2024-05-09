@@ -1,7 +1,6 @@
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
-import { useState } from 'react';
 
 
 function removebtag(text) {
@@ -13,20 +12,9 @@ function addCommas(num) {
 }
 
 
-function ProductList(props) {
+function ProductList(props, addToCart) {
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
-
-    // const [addToCart, setAddToCart] = useState()
-
-
-    // const setAddToCart = {
-    //     title: props.title,
-    //     image: props.image,
-    //     price: props.price
-    // };
-    // 장바구니에 추가
-
 
 
 

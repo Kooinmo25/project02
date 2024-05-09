@@ -4,12 +4,12 @@ import ShoopingCart from './ShoopingCart';
 import ModalBox from './Modal';
 
 
-function Cartreturn() {
+function Cartreturn({cartList, setCartList}) {
     return (
         <div>
             <TwoButton/>
             <ModalBox/>
-            <ShoopingCart />
+            <ShoopingCart cartList={cartList} setCartList={setCartList}/>
         </div>
     );
 }

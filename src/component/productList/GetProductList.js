@@ -4,14 +4,13 @@ import { Row } from "react-bootstrap";
 
 
 
-function GetProductList({ sortNum, pageNum}) {
+function GetProductList({ sortNum, pageNum, list, setList }) {
 
 
 
     const clientId = "HV5h7QtkYL9s3BHx903z";
     const clientSecret = "LLJMu3rRAm";
 
-    const [list, setList] = useState([]);
 
     useEffect(() => {
         fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
