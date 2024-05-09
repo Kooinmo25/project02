@@ -1,41 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ValueReturn from './Value';
+import CartContext from '../productList/CartContext';
 
-
-
-// 데이터 가져오기
 function ShoppingCart() {
-    const [products, setProducts] = useState([]);
-    const Id = "SN1EHooVeXWlRky05tyJ";
-    const Password = "_MdOmJ8du5";
+    const { cartList, setCartList } = useContext(CartContext);
 
     useEffect(() => {
-        fetch(
-            "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=3&start=11", {
-            method: "GET",
-            headers: {
-                "X-Naver-Client-Id": Id,
-                "X-Naver-Client-Secret": Password,
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => setProducts(json.items));
-    }, []);
+
+        const savedCartList = JSON.parse(localStorage.getItem('cartList'));
+        if (savedCartList) {
+            setCartList(savedCartList);
+        }
+    }, [setCartList]);
+
 
 
     return (
-        <div className="products-container" stlye={{width:'300px'}}>
-            {products.map((item, index) => (
+        <>
+            {cartList.map((item, index) => (
                 <ValueReturn
                     key={index}
-                    image={item.image}
                     title={item.title}
-                    price={item.lprice}
+                    image={item.image}
+                    price={item.price}
                 />
             ))}
-        </div>
+        </>
     );
 }
 
 export default ShoppingCart;
-

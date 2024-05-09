@@ -1,19 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ProductList from "./ProductList";
 import { Row } from "react-bootstrap";
+import Col from 'react-bootstrap/Col';
 
 
 
-function GetProductList({ sortNum, pageNum}) {
+function GetProductList({ sortNum, pageNum, list, setList }) {
 
 
 
     const clientId = "HV5h7QtkYL9s3BHx903z";
     const clientSecret = "LLJMu3rRAm";
 
-    const [list, setList] = useState([]);
 
     useEffect(() => {
+        
+
+        
         fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
@@ -23,9 +26,7 @@ function GetProductList({ sortNum, pageNum}) {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-        console.log("sortNum:", sortNum)
-        console.log("pageNum:", pageNum)
-        console.log(list)
+            console.log(list)
 
     }, [sortNum, pageNum])
 
@@ -33,14 +34,15 @@ function GetProductList({ sortNum, pageNum}) {
         
         <Row xs={1} md={2} lg={sortNum} className="g-4">
             {list.map((item, index) => (
+            <Col>
                 <ProductList
                     key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
                 />
+            </Col>
             ))}
-            
         </Row>
     )
 }

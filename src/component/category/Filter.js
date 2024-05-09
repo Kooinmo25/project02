@@ -1,10 +1,10 @@
 import Category from "./Category";
 
 
-function Filter() {
+function Filter({list, setList}) {
     return (
         <>
-            <Category />
+            <Category list={list} setList={setList}/>
         </>
     );
 }
