@@ -7,7 +7,7 @@ import Explain from './Explain';
 
 
 // 최종
-function Cartreturn({list, setList}) {
+function Cartreturn() {
     return (
         <div>
             <TwoButton />
@@ -15,8 +15,6 @@ function Cartreturn({list, setList}) {
             <ShoopingCart />
             <BottomStack/>
             <Explain/>
-            <Box/>
-            <ShoopingCart list={list} setList={setList} />
         </div>
     )
 }
