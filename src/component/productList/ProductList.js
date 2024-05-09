@@ -32,6 +32,7 @@ function ProductList(props) {
     }, [setCartList]);
 
     return (
+
         <Col className='productList' style={{ width: '100%', height: "40rem" }}>
             <Card>
                 <Card.Img variant="top" src={props.image} />
