@@ -11,10 +11,10 @@ function GetProductList({ sortNum, pageNum}) {
     const clientId = "HV5h7QtkYL9s3BHx903z";
     const clientSecret = "LLJMu3rRAm";
 
-    let [list, setList] = useState([]);
+    const [list, setList] = useState([]);
 
     useEffect(() => {
-        fetch(`/v1/search/shop?query=남자수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
+        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": clientId,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import ValueReturn from './Value';
 
 function ShoppingCart() {
@@ -8,7 +8,7 @@ function ShoppingCart() {
 
     useEffect(() => {
         fetch(
-            "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=10&start=11", {
+            "/v1/search/shop?query=여성 옷&filter=used:false&sort=sim&display=10&start=11", {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": Id,
@@ -17,11 +17,12 @@ function ShoppingCart() {
         }
         )
             .then((response) => response.json())
-            .then((json) => setProducts(json.items))
-    }, [])
+            .then((json) => setProducts(json.items));
+    }, []);
+
 
     return (
-        <>
+        <div className="products-container">
             {products.map((item, index) => (
                 <ValueReturn
                     key={index}
@@ -29,8 +30,9 @@ function ShoppingCart() {
                     image={item.image}
                     price={item.lprice} />
             ))}
-        </>
+        </div>
     );
 }
 
 export default ShoppingCart;
+
