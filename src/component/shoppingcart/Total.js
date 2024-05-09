@@ -1,14 +1,13 @@
 import React from 'react';
-import Top from './Top';
-import Check from './CheckBox';
+import TwoButton from './Button';
 import ShoopingCart from './ShoopingCart';
-
+import Box from './Box';
 
 function Cartreturn() {
     return (
         <div>
-            <Top />
-            <Check />
+            <TwoButton/>
+            <Box/>
             <ShoopingCart />
         </div>
     );
