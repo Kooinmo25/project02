@@ -24,7 +24,7 @@ function Get({ brand,  }) { // props로 brand 받기
     }, [brand]); // brand 값이 변경될 때마다 실행
 
     return (
-
+        
         <Row xs={1} md={2} lg={4} className="g-4">
             {list.map((item, index) => (
                 <Col>
@@ -36,7 +36,6 @@ function Get({ brand,  }) { // props로 brand 받기
                 />
                 </Col>
             ))}
-
         </Row>
     )
 }

@@ -6,8 +6,10 @@ import Footer from './Footer';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import CartProvider from '../productList/CartProvider';
-import Cartreturn from '../shoppingcart/Total';
 import Welcome from '../home/Welcome.js'
+import Cartreturn from '../shoppingcart/Total.js';
+
+
 
 
 function Layout() {
