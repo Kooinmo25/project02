@@ -3,12 +3,11 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalNav from '../common/GlobalNav';
 import Footer from './Footer';
-import Welcome from '../home/welcome';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import CartProvider from '../productList/CartProvider';
 import Cartreturn from '../shoppingcart/Total';
-
+import Welcome from '../home/Welcome.js'
 
 
 function Layout() {
