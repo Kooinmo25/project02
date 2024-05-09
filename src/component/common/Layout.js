@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalNav from '../common/GlobalNav';
 import Footer from './Footer';
-import Welcome from '../home/welcome';
+import Welcome from '../home/Welcome';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import ShoppingCart from '../shoppingcart/ShoopingCart';
