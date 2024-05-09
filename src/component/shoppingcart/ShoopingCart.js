@@ -1,14 +1,23 @@
-// ShoopingCart.js
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import ValueReturn from './Value';
-import ProductList from '../productList/ProductList';
+import CartContext from '../productList/CartContext';
 
-function ShoppingCart({ list, setList }) {
+function ShoppingCart() {
+    const { cartList, setCartList } = useContext(CartContext);
+
+    useEffect(() => {
+
+        const savedCartList = JSON.parse(localStorage.getItem('cartList'));
+        if (savedCartList) {
+            setCartList(savedCartList);
+        }
+    }, [setCartList]);
+
+
 
     return (
         <>
-            <ProductList />
-            {list.map((item, index) => (
+            {cartList.map((item, index) => (
                 <ValueReturn
                     key={index}
                     title={item.title}

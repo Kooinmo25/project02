@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ProductList from "./ProductList";
 import { Row } from "react-bootstrap";
+import Col from 'react-bootstrap/Col';
 
 
 
@@ -22,9 +23,7 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-        console.log("sortNum:", sortNum)
-        console.log("pageNum:", pageNum)
-        console.log(list)
+            console.log(list)
 
     }, [sortNum, pageNum])
 
@@ -32,14 +31,15 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
         
         <Row xs={1} md={2} lg={sortNum} className="g-4">
             {list.map((item, index) => (
+            <Col>
                 <ProductList
                     key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
                 />
+            </Col>
             ))}
-            
         </Row>
     )
 }
