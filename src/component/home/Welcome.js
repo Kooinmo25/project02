@@ -8,33 +8,17 @@ function Welcome() {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <Carousel>
-            {/* 첫 번째 페이지 */}
-            <Carousel.Item>
-                <div className="d-flex justify-content-center">
-                    <div className="m-2">
-                        <GetPopularItem isMobile={isMobile} />
+        <Carousel controls={true} className={isMobile ? 'mobile-carousel' : ''}>
+            {[...Array(3)].map((_, index) => (
+                <Carousel.Item key={index}>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <div className="m-5">
+                            <h1>인기 상품</h1>
+                            <GetPopularItem isMobile={isMobile} />
+                        </div>
                     </div>
-                </div>
-            </Carousel.Item>
-
-            {/* 두 번째 페이지 */}
-            <Carousel.Item>
-                <div className="d-flex justify-content-center">
-                    <div className="m-2">
-                        <GetPopularItem isMobile={isMobile} />
-                    </div>
-                </div>
-            </Carousel.Item>
-
-            {/* 세 번째 페이지 */}
-            <Carousel.Item>
-                <div className="d-flex justify-content-center">
-                    <div className="m-2">
-                        <GetPopularItem isMobile={isMobile} />
-                    </div>
-                </div>
-            </Carousel.Item>
+                </Carousel.Item>
+            ))}
         </Carousel>
     );
 }

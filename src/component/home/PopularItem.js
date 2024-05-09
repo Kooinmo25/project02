@@ -4,22 +4,35 @@ import { Row, Col } from "react-bootstrap";
 
 function GetPopularItem() {
     const [products, setProducts] = useState([]);
-    const ClientId = "q6nJostYODpavlKH_pBH";
-    const ClientPassword = "nSDltXmnhJ";
 
     useEffect(() => {
-        fetch(
-            "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=2&start=31", {
-            method: "GET",
-            headers: {
-                "X-Naver-Client-Id": ClientId,
-                "X-Naver-Client-Secret": ClientPassword,
-            },
+        const fetchData = async () => {
+            const ClientId = "q6nJostYODpavlKH_pBH";
+            const ClientPassword = "nSDltXmnhJ";
+            const response = await fetch(
+                "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=6&start=32", {
+                method: "GET",
+                headers: {
+                    "X-Naver-Client-Id": ClientId,
+                    "X-Naver-Client-Secret": ClientPassword,
+                },
+            });
+            
+            const json = await response.json();
+            const shuffledItems = shuffleArray(json.items.slice(0, 2));
+            setProducts(shuffledItems);
+        };
+        fetchData();
+    }, []);
+
+    // 배열을 랜덤하게 섞는 함수
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-        )
-            .then((response) => response.json())
-            .then((json) => setProducts(json.items))
-    }, [])
+        return array;
+    }
 
     return (
         <Row xs={1} md={2} className='g-4'>
