@@ -1,16 +1,24 @@
 import React from 'react';
 import TwoButton from './Button';
+import TopStack from './TopStack';
 import ShoopingCart from './ShoopingCart';
-import Box from './Box';
+import BottomStack from './BottomStack';
+import Explain from './Explain';
 
-function Cartreturn() {
+
+// 최종
+function Cartreturn({list, setList}) {
     return (
         <div>
-            <TwoButton/>
-            <Box/>
+            <TwoButton />
+            <TopStack/>
             <ShoopingCart />
+            <BottomStack/>
+            <Explain/>
+            <Box/>
+            <ShoopingCart list={list} setList={setList} />
         </div>
-    );
+    )
 }
 
 export default Cartreturn;
