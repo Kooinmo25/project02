@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand,  }) { // props로 brand 받기
+function Get({ brand, }) { // props로 brand 받기
     const [list, setlist] = useState([]);
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
@@ -26,14 +26,15 @@ function Get({ brand,  }) { // props로 brand 받기
 
         <Row xs={1} md={2} lg={4} className="g-4">
             {list.map((item, index) => (
-                <ProductList
-                    key={index}
-                    title={item.title}
-                    image={item.image}
-                    price={item.lprice}
-                />
+                <Col>
+                    <ProductList
+                        key={index}
+                        title={item.title}
+                        image={item.image}
+                        price={item.lprice}
+                    />
+                </Col>
             ))}
-
         </Row>
     )
 }
