@@ -1,6 +1,8 @@
 import React from 'react';
 import Stack from 'react-bootstrap/Stack';
 
+const get=[]
+
 function BottomStack() {
     return (
         <Stack direction="vertical" gap={6} style={{ backgroundColor: '#f0f0f0', border: '2px solid #ccc', borderRadius: '10px', padding: '10px', justifyContent: 'space-between' }}>
