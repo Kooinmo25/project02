@@ -3,6 +3,10 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
 import CartContext from './CartContext';
+import Button from 'react-bootstrap/Button';
+
+
+
 
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -42,7 +46,7 @@ function ProductList(props) {
                         {commas} 원
                     </Card.Text>
                     <Card.Text>
-                        <button onClick={handleAddToCart}>장바구니 담기</button>
+                        <Button as="input" type="button" value="장바구니 담기" onClick={handleAddToCart}/>
                     </Card.Text>
                 </Card.Body>
             </Card>

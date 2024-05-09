@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
+import Col from 'react-bootstrap/Col';
 
 function Get({ brand,  }) { // props로 brand 받기
     const [list, setlist] = useState([]);
@@ -26,12 +27,14 @@ function Get({ brand,  }) { // props로 brand 받기
 
         <Row xs={1} md={2} lg={4} className="g-4">
             {list.map((item, index) => (
+                <Col>
                 <ProductList
                     key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
                 />
+                </Col>
             ))}
 
         </Row>

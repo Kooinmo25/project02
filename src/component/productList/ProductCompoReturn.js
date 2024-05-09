@@ -2,6 +2,7 @@ import SortButton from "./SortButton";
 import GetProductList from "./GetProductList";
 import { useState } from "react";
 import Pages from "./PagiNation";
+import InputBox from "./InputBox";
 
 
 
@@ -16,6 +17,7 @@ function ProductCompoReturn({ list, setList,}) {
 
         <div>
             <SortButton setSortNum={setSortNum} />
+            <InputBox list={list} setList={setList}/>
             <GetProductList
                 list={list}
                 setList={setList}
