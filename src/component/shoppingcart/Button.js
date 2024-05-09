@@ -24,7 +24,8 @@ function TwoButton() {
 
 
     return (
-        <>
+        <>  
+            <div className='btn'>
             <ButtonGroup aria-label="Basic example" style={{margin:"10px", display: 'flex', justifyContent: 'space-between' }}>
                 <Button variant="secondary" style={{ width: "5%", height: "auto" }}>전체 선택</Button>
                 <Button variant="secondary" onClick={handleShowModal} style={{ width: "5%", height: "auto" }}>선택 삭제</Button>
@@ -45,6 +46,7 @@ function TwoButton() {
                     <Button variant="primary" onClick={handleCancel} >취소</Button>
                 </Modal.Footer>
             </Modal>
+            </div>
         </>
     );
 }
