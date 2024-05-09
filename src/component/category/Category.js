@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Get from './Get';
-import "./Category.css";
+import './Category.css';
 
 function Category() {
     const [brand, setBrand] = useState(null);
