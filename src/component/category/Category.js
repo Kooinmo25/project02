@@ -4,12 +4,10 @@ import Get from './Get';
 import "./Category.css";
 
 function Category() {
-    const [selectedCategory, setSelectedCategory] = useState(null);
     const [brand, setBrand] = useState(null);
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
-        setSelectedCategory(category);
         setBrand(category); // 브랜드 상태 업데이트
     };
 

@@ -1,7 +1,7 @@
 
 
 
-function Pages({setPageNum}) {
+function Pages({ setPageNum }) {
     const pageChange = (newPage) => {
         setPageNum(newPage);
     };
