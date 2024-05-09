@@ -5,10 +5,14 @@
 }
 
 .carousel-control-prev-icon{
-    margin-right: 68px;
+    margin-right: 100px;
 }
 
 
 .carousel-control-next-icon {
-    margin-left: 68px;
+    margin-left: 100px;
+}
+
+.mobile-carousel h1 {
+  text-align: center;
 }

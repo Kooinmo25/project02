@@ -9,7 +9,7 @@ function GetPopularItem() {
 
     useEffect(() => {
         fetch(
-            "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=2&start=31", {
+            "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=6&start=11", {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": ClientId,
@@ -18,7 +18,7 @@ function GetPopularItem() {
         }
         )
             .then((response) => response.json())
-            .then((json) => setProducts(json.items))
+            .then((json) => setProducts(json.items.slice(0,2)))
     }, [])
 
     return (
