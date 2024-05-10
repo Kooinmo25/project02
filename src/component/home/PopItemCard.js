@@ -27,7 +27,7 @@ function PopItemCard(props) {
                         <span>{commas} 원</span>
                         <ButtonGroup>
                             <Button variant = "secondary">구매하기</Button>
-                            <Button variant='secondary'>장바구니에 담기</Button>
+                            <Button variant='success'>장바구니에 담기</Button>
                         </ButtonGroup>
                     </Card.Text>
                 </Card.Body>
