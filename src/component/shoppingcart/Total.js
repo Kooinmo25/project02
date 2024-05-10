@@ -1,5 +1,5 @@
 import React from 'react';
-import TwoButton from './Button';
+import TwoButton from './TwoButton';
 import TopStack from './TopStack';
 import ShoppingCart from './ShoopingCart';
 import BottomStack from './BottomStack';
@@ -12,10 +12,10 @@ function Cartreturn() {
     return (
         <div>
             <TwoButton />
-            <TopStack/>
-            <ShoppingCart/>
-            <BottomStack/>
-            <Explain/>
+            <TopStack />
+            <ShoppingCart />
+            <BottomStack />
+            <Explain />
         </div>
     )
 }

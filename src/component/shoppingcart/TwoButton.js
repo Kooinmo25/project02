@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 
 function TwoButton() {
     const [showModal, setShowModal] = useState(false);
+    
 
     const handleShowModal = () => {
         setShowModal(true);
@@ -38,7 +39,7 @@ function TwoButton() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>선택하신 1개 상품을 장바구니에서 삭제하시겠습니까?</p>
+                    <p>선택하신 상품을 장바구니에서 삭제하시겠습니까?</p>
                 </Modal.Body>
 
                 <Modal.Footer>

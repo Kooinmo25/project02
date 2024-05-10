@@ -1,13 +1,15 @@
 import React from 'react';
-import Stack from 'react-bootstrap/Stack';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function TopStack() {
     return (
-        <Stack direction="horizontal" gap={3} style={{ backgroundColor: '#f0f0f0', border: '2px solid #ccc', borderRadius: '10px', padding: '10px', justifyContent: 'space-between' }}>
-            <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '10px', backgroundColor: 'ivory', flex: '1', textAlign:'center' }}>이미지</div>
-            <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '10px', backgroundColor: 'ivory', flex: '1', textAlign: 'center' }}>상품정보</div>
-            <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '10px', backgroundColor: 'ivory', flex: '1', textAlign: 'center' }}>수량</div>
-        </Stack>
+        <Container style={{ backgroundColor: '#f0f0f0', border: '2px solid #ccc', borderRadius: '10px', padding: '10px' }}>
+            <Row className="align-items-center">
+                <Col xs={4} className="text-center" style={{ borderRight: '1px solid #ccc' }}>이미지</Col>
+                <Col xs={4} className="text-center" style={{ borderRight: '1px solid #ccc' }}>상품정보</Col>
+                <Col xs={4} className="text-center">수량</Col>
+            </Row>
+        </Container>
     );
 }
 

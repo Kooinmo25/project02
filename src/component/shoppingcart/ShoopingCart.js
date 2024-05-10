@@ -13,8 +13,6 @@ function ShoppingCart() {
         }
     }, [setCartList]);
 
-
-
     return (
         <>
             {cartList.map((item, index) => (
