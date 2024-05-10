@@ -7,10 +7,11 @@ function GetPopularItem() {
 
     useEffect(() => {
         const fetchData = async () => {
+            const randomStart = Math.floor(Math.random() * 100);
             const ClientId = "q6nJostYODpavlKH_pBH";
             const ClientPassword = "nSDltXmnhJ";
             const response = await fetch(
-                "/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=6&start=32", {
+                `/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=6&start=${randomStart}`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": ClientId,
@@ -19,7 +20,7 @@ function GetPopularItem() {
             });
             
             const json = await response.json();
-            const shuffledItems = shuffleArray(json.items.slice(0, 2));
+            const shuffledItems = shuffleArray(json.items).slice(0, 2);
             setProducts(shuffledItems);
         };
         fetchData();

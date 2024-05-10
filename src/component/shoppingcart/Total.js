@@ -12,10 +12,10 @@ function Cartreturn() {
     return (
         <div>
             <TwoButton />
-            <TopStack />
-            <ShoppingCart />
-            <BottomStack />
-            <Explain />
+            <TopStack/>
+            <ShoppingCart/>
+            <BottomStack/>
+            <Explain/>
         </div>
     )
 }

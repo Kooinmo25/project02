@@ -1,18 +1,20 @@
 
 
+import Button from 'react-bootstrap/Button';
 
 function Pages({ setPageNum }) {
-    const pageChange = (newPage) => {
+    const pageChange = (newPage) => {   
         setPageNum(newPage);
+        window.scrollTo(0, 0)
     };
 
     return (
         <div>
-            <button onClick={() => pageChange(1)}>1</button>
-            <button onClick={() => pageChange(20)}>2</button>
-            <button onClick={() => pageChange(40)}>3</button>
-            <button onClick={() => pageChange(60)}>4</button>
-            <button onClick={() => pageChange(80)}>5</button>
+            <Button as="input" type="button" value="1" onClick={() => pageChange(1)}/>
+            <Button as="input" type="button" value="2" onClick={() => pageChange(20)}/>
+            <Button as="input" type="button" value="3" onClick={() => pageChange(40)}/>
+            <Button as="input" type="button" value="4" onClick={() => pageChange(60)}/>
+            <Button as="input" type="button" value="5" onClick={() => pageChange(80)}/>
         </div>
     )
 }
