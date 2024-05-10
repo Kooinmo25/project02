@@ -1,4 +1,4 @@
-import { useState } from 'react'; // useState 추가
+import { useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
@@ -8,8 +8,8 @@ function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
 
-
 function addCommas(num) {
+    const numString = String(num);
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -22,13 +22,9 @@ function ValueReturn(props) {
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
-        setIsDeleted(true); 
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList));
     }
 
-    if (isDeleted) {
-        return null;
-    }
 
     return (
         <div className='product-item'>
@@ -39,7 +35,7 @@ function ValueReturn(props) {
                     value={props.id} 
                     onChange={() => {
                         props.setCheck(!props.check)
-                    }}/>
+                    }} />
                 </div>
                 <div className="img">
                     <img 

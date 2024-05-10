@@ -14,7 +14,6 @@ function ShoppingCart({check, setCheck}) {
         console.log(savedCartList)
     }, [setCartList]);
 
-
     return (
         <>
             {cartList.map((item, index) => (
