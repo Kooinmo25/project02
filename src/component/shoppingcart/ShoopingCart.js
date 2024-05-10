@@ -15,7 +15,6 @@ function ShoppingCart({check, setCheck}) {
     }, [setCartList]);
 
 
-
     return (
         <>
             {cartList.map((item, index) => (

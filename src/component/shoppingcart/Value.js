@@ -1,5 +1,6 @@
 import { useState } from 'react'; // useState 추가
 import Stack from 'react-bootstrap/Stack';
+import CloseButton from 'react-bootstrap/CloseButton';
 
 // b삭제
 function removebtag(text) {
@@ -40,7 +41,7 @@ function ValueReturn(props) {
                 </div>
                 <div className="title">{titledel}</div>
                 <div className="price">{commas}</div>
-                <button onClick={delCartList}>X</button>
+                <CloseButton onClick={delCartList} />
             </Stack>
         </div>
     );
