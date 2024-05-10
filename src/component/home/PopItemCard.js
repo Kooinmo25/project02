@@ -70,7 +70,10 @@ function PopItemCard(props) {
                                         as="input"
                                         type="button"
                                         value="장바구니 담기"
-                                        onClick={handleAddToCart}
+                                        onClick={() => {
+                                            alert("해당 상품을 장바구니에 담았습니다.");
+                                            handleAddToCart();
+                                        }}
                                         variant='success'
                                         size={isMobile ? 'sm' : 'md'}
                                         style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 
-function TwoButton() {
+function TwoButton(check, setCheck, props) {
     const [showModal, setShowModal] = useState(false);
     
 
@@ -15,8 +15,14 @@ function TwoButton() {
         setShowModal(false);
     }
 
+    
     const handleCheck = () => {
-        handleCloseModal();
+        if (check === true) {
+            const checkedItemId = props.cartList.filter(item => item.checked).map(item => item.id);
+            const updatedCartList = JSON.parse(localStorage.getItem('cartList')).filter(item => !checkedItemId.includes(item.id));
+            localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+            window.location.reload(); 
+        }
     }
 
     const handleCancel = () => {

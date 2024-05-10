@@ -1,25 +1,42 @@
-import React from 'react';
+import { useState } from 'react';
+import Stack from 'react-bootstrap/Stack';
 
-// b 태그 제거 함수
+// b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
 
-function ValueReturn(props) {
-    // 제목 b 태그 삭제
-    const titledel = removebtag(props.title);
+function addCommas(num) {
+    const numString = String(num);
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-    
+function ValueReturn(props) {
+    const titledel = removebtag(props.title);
+    const commas = addCommas(props.price);
+
+    function delCartList() {
+        const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
+        const updatedCartList = cartList.filter(item => item.id !== props.id);
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+    }
+
+
     return (
-        <div className='product-item' style={{ display: 'flex', alignItems: 'center', border: '1px solid black', padding: '10px', marginBottom: '10px', marginTop: '10px' }}>
-            <input type='checkbox' />
-            <div className="img" style={{ marginRight: '10px' }}>
-                <img src={props.image} alt={titledel} />
-            </div>
-            <div style={{ marginRight: '10px' }}>
+        <div className='product-item'>
+            <Stack direction="horizontal" gap={3}>
+                <div>
+                    <input type='checkBox' value={props.id} onChange={() => {
+                        props.setCheck(!props.check)
+                    }} />
+                </div>
+                <div className="img">
+                    <img src={props.image} alt="Product"></img>
+                </div>
                 <div className="title">{titledel}</div>
-                <div className="price">{props.price}</div>
-            </div>
+                <div className="price">{commas}</div>
+                <button onClick={delCartList}>X</button>
+            </Stack>
         </div>
     );
 }
