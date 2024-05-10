@@ -54,7 +54,7 @@ import { useEffect, useState } from "react";
 import PopItemCard from "./PopItemCard";
 import { Row, Col } from "react-bootstrap";
 
-function GetPopularItem() {
+function GetPopularItem({list, setList}) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
