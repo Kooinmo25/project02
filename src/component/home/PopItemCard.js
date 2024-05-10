@@ -20,13 +20,20 @@ function PopItemCard(props) {
     return (
         <Col className='d-flex justify-content-center align-items-center'>
             <Card style={{ width: isMobile ? '15rem' : '30rem' }}>
-                <Card.Img variant="top" src={props.image} />
+                <Card.Img
+                    variant="top"
+                    src={props.image}
+                    style={{
+                        objectFit: "cover",
+                        height: isMobile ? "15rem" : "30rem"
+                    }}
+                />
                 <Card.Body>
                     <Card.Title className="text-truncate">{titleDel}</Card.Title>
                     <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }} className="d-flex justify-content-between">
                         <span>{commas} 원</span>
                         <ButtonGroup>
-                            <Button variant = "secondary">구매하기</Button>
+                            <Button variant="secondary">구매하기</Button>
                             <Button variant='success'>장바구니에 담기</Button>
                         </ButtonGroup>
                     </Card.Text>
