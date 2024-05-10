@@ -40,6 +40,7 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
+                    id={item.productId}
                 />
             </Col>
             ))}

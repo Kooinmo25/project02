@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 
-function TwoButton() {
+function TwoButton(check, setCheck, props) {
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = () => {
@@ -14,8 +14,14 @@ function TwoButton() {
         setShowModal(false);
     }
 
+    
     const handleCheck = () => {
-        handleCloseModal();
+        if (check === true) {
+            const checkedItemId = props.cartList.filter(item => item.checked).map(item => item.id);
+            const updatedCartList = JSON.parse(localStorage.getItem('cartList')).filter(item => !checkedItemId.includes(item.id));
+            localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+            window.location.reload(); 
+        }
     }
 
     const handleCancel = () => {
@@ -38,7 +44,7 @@ function TwoButton() {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <p>선택하신 1개 상품을 장바구니에서 삭제하시겠습니까?</p>
+                    <p>선택하신 상품을 장바구니에서 삭제하시겠습니까?</p>
                 </Modal.Body>
 
                 <Modal.Footer>
