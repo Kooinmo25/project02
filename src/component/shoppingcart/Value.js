@@ -7,9 +7,14 @@ function removebtag(text) {
 }
 
 
+function addCommas(num) {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
     const [isDeleted, setIsDeleted] = useState(false); 
+    const commas =addCommas(props.price)
 
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
@@ -34,7 +39,7 @@ function ValueReturn(props) {
                     <img src={props.image} alt="Product"></img>
                 </div>
                 <div className="title">{titledel}</div>
-                <div className="price">{props.price}</div>
+                <div className="price">{commas}</div>
                 <button onClick={delCartList}>X</button>
             </Stack>
         </div>
