@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { useMediaQuery } from 'react-responsive';
+import CartContext from '../productList/CartContext';
 
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -16,6 +17,21 @@ function PopItemCard(props) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const titleDel = removebtag(props.title);
     const commas = addCommas(props.price)
+    const { cartList, setCartList } = useContext(CartContext);
+
+    const handleAddToCart = () => {
+        const item = { title: props.title, image: props.image, price: props.price };
+        const updatedCartList = [...cartList, item];
+        setCartList(updatedCartList);
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
+    };
+
+    useEffect(() => {
+        const savedCartList = JSON.parse(localStorage.getItem('cartList'));
+        if (savedCartList) {
+            setCartList(savedCartList);
+        }
+    }, [setCartList]);
 
     return (
         <Col className='d-flex justify-content-center align-items-center'>
@@ -48,10 +64,14 @@ function PopItemCard(props) {
                                 >구매하기</Button>
                                 
                                 <Button
+                                    as="input"
+                                    type="button"
+                                    value="장바구니 담기"
+                                    onClick={handleAddToCart}
                                     variant='success'
                                     size={isMobile ? 'sm' : 'md'}
                                     style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
-                                >장바구니 담기</Button>
+                                />
                             </ButtonGroup>
                         </div>
                     </div>
