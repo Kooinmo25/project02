@@ -17,11 +17,8 @@ function Cartreturn() {
             <TwoButton check={check} setCheck={setCheck} />
             {/* <TopStack/> */}
             <ShoopingCart check={check} setCheck={setCheck} />
-            <BottomStack/>
-            <Explain/>
-
-
-    
+            <BottomStack />
+            <Explain />
         </div>
     )
 }
