@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TwoButton from './Button';
+import TwoButton from './TwoButton';
 // import TopStack from './TopStack';
 import ShoopingCart from './ShoopingCart';
 import BottomStack from './BottomStack';

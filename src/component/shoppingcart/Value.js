@@ -9,7 +9,6 @@ function removebtag(text) {
 }
 
 function addCommas(num) {
-    const numString = String(num);
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
@@ -23,6 +22,11 @@ function ValueReturn(props) {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
         localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        setIsDeleted(true);
+    }
+
+    if (isDeleted) {
+        return null;
     }
 
 
