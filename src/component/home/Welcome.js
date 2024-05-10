@@ -4,11 +4,11 @@ import "./Welcome.css";
 import GetPopularItem from './PopularItem';
 import { useMediaQuery } from 'react-responsive';
 
-function Welcome({list, setList}) {
+function Welcome({ list, setList }) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <Carousel controls className={isMobile ? 'mobile-carousel' : ''}>
+        <Carousel controls={true} className={isMobile ? 'mobile-carousel' : ''}>
             {[...Array(3)].map((_, index) => (
                 <Carousel.Item key={index}>
                     <div className="d-flex justify-content-center align-items-center">
@@ -22,5 +22,7 @@ function Welcome({list, setList}) {
         </Carousel>
     );
 }
+
+
 
 export default Welcome;

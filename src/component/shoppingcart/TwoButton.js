@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 
 function TwoButton(check, setCheck, props) {
     const [showModal, setShowModal] = useState(false);
+    
 
     const handleShowModal = () => {
         setShowModal(true);

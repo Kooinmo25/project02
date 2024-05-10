@@ -1,12 +1,12 @@
-import { useState } from 'react'; // useState 추가
+import { useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
+import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 
 // b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
-
 
 function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -15,29 +15,38 @@ function addCommas(num) {
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
     const [isDeleted, setIsDeleted] = useState(false); 
-    const commas =addCommas(props.price)
+    const commas =addCommas(props.price);
+    const isMobile = useMediaQuery({ maxWidth: 768});
 
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
-        setIsDeleted(true); 
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        setIsDeleted(true);
     }
 
     if (isDeleted) {
         return null;
     }
 
+
     return (
         <div className='product-item'>
-            <Stack direction="horizontal" gap={3}>
+            <Stack direction= {isMobile ? "vertical" : "horizontal"} gap={3}>
                 <div>
-                    <input type='checkBox' value={props.id} onChange={() => {
+                    <input 
+                    type='checkBox' 
+                    value={props.id} 
+                    onChange={() => {
                         props.setCheck(!props.check)
-                    }}/>
+                    }} />
                 </div>
                 <div className="img">
-                    <img src={props.image} alt="Product"></img>
+                    <img 
+                    src={props.image} 
+                    alt="Product"
+                    style={{ width : isMobile ? "12rem" : "32rem",
+                             height: isMobile ? "12rem" : "32rem"}}></img>
                 </div>
                 <div className="title">{titledel}</div>
                 <div className="price">{commas}</div>

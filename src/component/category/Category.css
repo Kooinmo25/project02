@@ -22,3 +22,53 @@
 .button:hover {
     background-color: red;
 }
+
+
+.red-button {
+    background-color: red;
+}
+
+.blue-button {
+    background-color: blue;
+}
+
+.green-button {
+    background-color: green;
+}
+
+.yellow-button {
+    background-color: yellow;
+    color: black;
+}
+
+.orange-button {
+    background-color: orange;
+}
+
+.purple-button {
+    background-color: purple;
+}
+
+.ivory-button {
+    background-color: rgb(195, 195, 184);
+    color: black;
+}
+
+.mint-button {
+    background-color: aqua;
+    color: black;
+}
+
+.pink-button {
+    background-color: pink;
+    color: black;
+}
+
+.white-button {
+    background-color: rgb(246, 239, 239);
+    color: black;
+}
+
+.black-button {
+    background-color: black;
+}
