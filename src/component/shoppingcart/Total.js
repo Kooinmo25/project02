@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TwoButton from './Button';
-import TopStack from './TopStack';
+// import TopStack from './TopStack';
 import ShoopingCart from './ShoopingCart';
 import BottomStack from './BottomStack';
 import Explain from './Explain';
@@ -14,7 +14,7 @@ function Cartreturn() {
     return (
         <div>
             <TwoButton check={check} setCheck={setCheck} />
-            <TopStack/>
+            {/* <TopStack/> */}
             <ShoopingCart check={check} setCheck={setCheck} />
             <BottomStack/>
             <Explain/>
