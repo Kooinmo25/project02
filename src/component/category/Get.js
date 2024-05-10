@@ -11,7 +11,7 @@ function Get({ brand, }) { // props로 brand 받기
     useEffect(() => {
         if (brand) { // 브랜드 값이 있을 때만 실행
             fetch(
-                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=11`, {
+                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": clientId,
