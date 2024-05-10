@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-
-function Get({ brand, }) { // props로 brand 받기
+function Get({ brand }) {
     const [list, setlist] = useState([]);
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
@@ -24,12 +23,10 @@ function Get({ brand, }) { // props로 brand 받기
     }, [brand]); // brand 값이 변경될 때마다 실행
 
     return (
-
         <Row xs={1} md={2} lg={4} className="g-4">
             {list.map((item, index) => (
-                <Col>
+                <Col key={index}>
                     <ProductList
-                        key={index}
                         title={item.title}
                         image={item.image}
                         price={item.lprice}
