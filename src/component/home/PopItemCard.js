@@ -30,13 +30,31 @@ function PopItemCard(props) {
                 />
                 <Card.Body>
                     <Card.Title className="text-truncate">{titleDel}</Card.Title>
-                    <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }} className="d-flex justify-content-between">
-                        <span>{commas} 원</span>
-                        <ButtonGroup>
-                            <Button variant="secondary">구매하기</Button>
-                            <Button variant='success'>장바구니에 담기</Button>
-                        </ButtonGroup>
-                    </Card.Text>
+                    <div style={{
+                        display: 'flex',
+                        flexDirection: isMobile ? 'column' : 'row', alignItems: 'center'
+                    }}>
+                        <span style={{
+                            fontWeight: "bold",
+                            fontSize: isMobile ? "16px" : "20px"
+                        }}>{commas} 원</span>
+
+                        <div style={{ marginLeft: isMobile ? 0 : 'auto', marginTop: isMobile ? '10px' : 0 }}>
+                            <ButtonGroup>
+                                <Button
+                                    variant="secondary"
+                                    size={isMobile ? 'sm' : 'md'}
+                                    style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
+                                >구매하기</Button>
+                                
+                                <Button
+                                    variant='success'
+                                    size={isMobile ? 'sm' : 'md'}
+                                    style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
+                                >장바구니 담기</Button>
+                            </ButtonGroup>
+                        </div>
+                    </div>
                 </Card.Body>
                 <Button variant='primary'>상세정보</Button>
             </Card>
