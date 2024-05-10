@@ -13,8 +13,8 @@ function Welcome({ list, setList }) {
                 <Carousel.Item key={index}>
                     <div className="d-flex justify-content-center align-items-center">
                         <div className="m-5">
-                            <h1>인기 상품</h1>
-                            <GetPopularItem isMobile={isMobile} list={list} setList={setList} />
+                            <h1>추천 상품</h1>
+                            <GetPopularItem isMobile={isMobile} />
                         </div>
                     </div>
                 </Carousel.Item>
