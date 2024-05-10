@@ -8,7 +8,7 @@ function Welcome() {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <Carousel controls={true} className={isMobile ? 'mobile-carousel' : ''}>
+        <Carousel controls className={isMobile ? 'mobile-carousel' : ''}>
             {[...Array(3)].map((_, index) => (
                 <Carousel.Item key={index}>
                     <div className="d-flex justify-content-center align-items-center">
