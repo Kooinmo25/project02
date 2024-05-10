@@ -34,7 +34,7 @@ function InputBox({ list, setList }) {
         const filteredProducts = allList.filter(product => 
             product.title.toLowerCase().includes(searchTerm.toLowerCase())
         );
-        setList(filteredProducts); // 부모 컴포넌트에 필터링된 리스트를 전달합니다.
+        setList(filteredProducts);
     };
 
     const enterKey = (event) => {

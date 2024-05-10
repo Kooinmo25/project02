@@ -22,10 +22,13 @@ function ProductList(props) {
     const { cartList, setCartList } = useContext(CartContext);
     
     const handleAddToCart = () => {
-        const item = { title: props.title, image: props.image, price: props.price };
-        const updatedCartList = [...cartList, item];
-        setCartList(updatedCartList);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
+        const item = { title: props.title, image: props.image, price: props.price, id: props.id };
+        const cartList = JSON.parse(localStorage.getItem('cartList')) || []; 
+        const cartKey = props.id
+        cartList.push(item);
+        localStorage.setItem('cartList', JSON.stringify(cartList));
+        console.log(cartKey)
+
     };
 
     useEffect(() => {
@@ -33,6 +36,8 @@ function ProductList(props) {
         if (savedCartList) {
             setCartList(savedCartList);
         }
+        
+
     }, [setCartList]);
 
     return (

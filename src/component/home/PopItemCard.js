@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { useMediaQuery } from 'react-responsive';
@@ -57,8 +57,9 @@ function PopItemCard(props) {
                         }}>{commas} 원</span>
 
                         <div style={{ marginLeft: isMobile ? 0 : 'auto', marginTop: isMobile ? '10px' : 0 }}>
-                            <ButtonGroup>
+                            
                                 <Button
+                                    className='mx-1'
                                     variant="secondary"
                                     size={isMobile ? 'sm' : 'md'}
                                     style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
@@ -69,13 +70,15 @@ function PopItemCard(props) {
                                         as="input"
                                         type="button"
                                         value="장바구니 담기"
-                                        onClick={handleAddToCart}
+                                        onClick={() => {
+                                            alert("해당 상품을 장바구니에 담았습니다.");
+                                            handleAddToCart();
+                                        }}
                                         variant='success'
                                         size={isMobile ? 'sm' : 'md'}
                                         style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
                                     />
                                 </Link>
-                            </ButtonGroup>
                         </div>
                     </div>
                 </Card.Body>
