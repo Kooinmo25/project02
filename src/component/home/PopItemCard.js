@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { useMediaQuery } from 'react-responsive';
 import CartContext from '../productList/CartContext';
+import { Link } from 'react-router-dom';
 
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -23,7 +24,7 @@ function PopItemCard(props) {
         const item = { title: props.title, image: props.image, price: props.price };
         const updatedCartList = [...cartList, item];
         setCartList(updatedCartList);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
+        localStorage.setItem('cartList', JSON.stringify(updatedCartList));
     };
 
     useEffect(() => {
@@ -62,16 +63,18 @@ function PopItemCard(props) {
                                     size={isMobile ? 'sm' : 'md'}
                                     style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
                                 >구매하기</Button>
-                                
-                                <Button
-                                    as="input"
-                                    type="button"
-                                    value="장바구니 담기"
-                                    onClick={handleAddToCart}
-                                    variant='success'
-                                    size={isMobile ? 'sm' : 'md'}
-                                    style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
-                                />
+
+                                <Link to="/shoppingcart">
+                                    <Button
+                                        as="input"
+                                        type="button"
+                                        value="장바구니 담기"
+                                        onClick={handleAddToCart}
+                                        variant='success'
+                                        size={isMobile ? 'sm' : 'md'}
+                                        style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
+                                    />
+                                </Link>
                             </ButtonGroup>
                         </div>
                     </div>
