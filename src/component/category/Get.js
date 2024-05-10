@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
+
 function Get({ brand, }) { // props로 brand 받기
     const [list, setlist] = useState([]);
     const clientId = "C88k7kKQEPtcbHOYYaRs";
