@@ -25,6 +25,9 @@ function ValueReturn(props) {
         setIsDeleted(true);
     }
 
+    if (isDeleted) {
+        return null;
+    }
 
     return (
         <div className='product-item'>
