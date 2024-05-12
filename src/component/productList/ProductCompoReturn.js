@@ -4,12 +4,14 @@ import { useState } from "react";
 import Pages from "./PagiNation";
 import InputBox from "./InputBox";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import SortList from "./SortList";
 
 
-function ProductCompoReturn({ list, setList, }) {
+function ProductCompoReturn({ list, setList }) {
 
     const [sortNum, setSortNum] = useState(4);
     const [pageNum, setPageNum] = useState(1);
+    const [priceSort, setPriceSort] = useState('sim');
 
 
 
@@ -17,7 +19,8 @@ function ProductCompoReturn({ list, setList, }) {
 
         <div>
             <ButtonGroup>
-                <SortButton setSortNum={setSortNum} />
+                <SortButton setSortNum={setSortNum} setPriceSort={setPriceSort} />
+                <SortList setPriceSort={setPriceSort} list={list} setList={setList} />
                 <InputBox list={list} setList={setList} />
             </ButtonGroup>
             <GetProductList
@@ -25,7 +28,7 @@ function ProductCompoReturn({ list, setList, }) {
                 setList={setList}
                 sortNum={sortNum}
                 pageNum={pageNum}
-                add
+                priceSort={priceSort}
             />
             <Pages setPageNum={setPageNum} />
         </div>
