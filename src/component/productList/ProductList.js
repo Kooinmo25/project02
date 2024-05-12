@@ -30,7 +30,7 @@ function ProductList(props) {
         localStorage.setItem('cartList', JSON.stringify(cartList));
         console.log(cartKey)
 
-    };
+    };  
 
     useEffect(() => {
         const savedCartList = JSON.parse(localStorage.getItem('cartList'));

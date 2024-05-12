@@ -7,7 +7,7 @@ import CartContext from '../productList/CartContext';
 
 function GlobalNav() {
   const expand = 'md';
-  const { cartList, setCartList } = useContext(CartContext);
+  const { cartList, setCartList } = useContext(CartContext);  
   const [cartItemCount, setCartItemCount] = useState(cartList.length);
 
   useEffect(() => {

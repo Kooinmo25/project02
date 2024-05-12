@@ -33,10 +33,9 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
     return (
         
         <Row xs={1} md={2} lg={sortNum} className="g-4">
-            {list.map((item, index) => (
-            <Col>
+            {list.map((item) => (
+            <Col key={item.productId}>
                 <ProductList
-                    key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Form, Row, Col, Button } from 'react-bootstrap';
 
 function InputBox({ list, setList }) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -8,9 +9,6 @@ function InputBox({ list, setList }) {
     const clientSecret = "LLJMu3rRAm";
 
     useEffect(() => {
-        
-
-        
         fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=100&start=1`, {
             method: "GET",
             headers: {
@@ -23,9 +21,6 @@ function InputBox({ list, setList }) {
 
     }, [])
 
-
-
-
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
     };
@@ -37,23 +32,28 @@ function InputBox({ list, setList }) {
         setList(filteredProducts);
     };
 
-    const enterKey = (event) => {
-        if (event.key === 'Enter') {
-            filterProducts();
-        }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        filterProducts();
     };
 
     return (
-        <div>
-            <input 
-                type="text" 
-                placeholder="검색어를 입력하세요" 
-                value={searchTerm} 
-                onChange={handleChange} 
-                onKeyPress={enterKey}
-            />
-            <button onClick={filterProducts}>확인</button>
-        </div>
+        <Form inline='true' onSubmit={handleSubmit}>
+            <Row>
+                <Col xs="auto">
+                    <Form.Control
+                        type="text"
+                        placeholder="검색어를 입력하세요"
+                        className="mr-sm-2"
+                        value={searchTerm}
+                        onChange={handleChange}
+                    />
+                </Col>
+                <Col xs="auto">
+                    <Button type="submit">확인</Button>
+                </Col>
+            </Row>
+        </Form>
     );
 }
 
