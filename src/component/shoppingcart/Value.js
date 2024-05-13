@@ -29,7 +29,6 @@ function ValueReturn(props) {
         return null;
     }
 
-
     return (
         <div className='product-item'>
             <Stack direction= {isMobile ? "vertical" : "horizontal"} gap={3}>
@@ -45,8 +44,8 @@ function ValueReturn(props) {
                     <img 
                     src={props.image} 
                     alt="Product"
-                    style={{ width : isMobile ? "12rem" : "32rem",
-                             height: isMobile ? "12rem" : "32rem"}}></img>
+                    style={{ width : isMobile ? "20rem" : "32rem",
+                             height: isMobile ? "20rem" : "32rem"}}></img>
                 </div>
                 <div className="title">{titledel}</div>
                 <div className="price">{commas}</div>
