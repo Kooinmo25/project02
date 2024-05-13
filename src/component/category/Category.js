@@ -7,6 +7,45 @@ function Category() {
     const [list, setList] = useState([]);
     const [brand, setBrand] = useState(null);
 
+
+
+    useEffect(() => {
+        if (brand) { // 브랜드 값이 있을 때만 실행
+            const clientId = "C88k7kKQEPtcbHOYYaRs";
+            const clientSecret = "5XoMjg7Tdx";
+
+            fetch(
+                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
+                method: "GET",
+                headers: {
+                    "X-Naver-Client-Id": clientId,
+                    "X-Naver-Client-Secret": clientSecret,
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => setList(json.items));
+        }
+    }, [brand]); // brand 값이 변경될 때마다 실행
+
+    function firstPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 10000 && item.lprice <= 20000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
+
+    function secondPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 20001 && item.lprice <= 40000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
+
+    function thirdPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 40001 && item.lprice <= 80000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
+
+
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category); // 브랜드 상태 업데이트
@@ -79,9 +118,9 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            {Object.entries(buttons[3]).map(([label, { min, max }]) => (
-                                <button className="button" onClick={() => handlePriceClick(min, max)}>{label}</button>
-                            ))}
+                            <button className="button" onClick={() => firstPriceRange()}>10,000원~20,000원</button>
+                            <button className="button" onClick={() => secondPriceRange()}>20,000원~40,000원</button>
+                            <button className="button" onClick={() => thirdPriceRange()}>40,000원~80,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
