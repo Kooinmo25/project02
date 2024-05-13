@@ -6,8 +6,6 @@ import './Value.css'
 import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 
-
-
 // b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -25,17 +23,16 @@ function ValueReturn(props) {
     const { totalPrice, setTotalPrice } = useContext(CartContext);
 
     useEffect(() => {
-    }, [count, totalPrice, setTotalPrice]);
+        setTotalPrice(props.price * count);
+    }, [count, props.price, setTotalPrice]);
 
     function plusButton() {
         setCount(count + 1);
-        setTotalPrice(totalPrice + (count * props.price))
     }
 
     function minusButton() {
         if (count > 1) {
             setCount(count - 1);
-            setTotalPrice(totalPrice - props.price); // 
         }
     }
 
@@ -81,10 +78,10 @@ function ValueReturn(props) {
                     />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
-                <div>
-                    <button onClick={minusButton}>-</button>
-                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
+                <div className="price" style={{ display: 'flex', alignItems: 'center' }}>
+                    <span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span>
+                    <button onClick={minusButton} style={{ marginLeft: '1rem' }}>-</button>
+                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center', margin: '0 0.5rem' }} readOnly />
                     <button onClick={plusButton}>+</button>
                 </div>
                 <CloseButton onClick={delCartList} />
