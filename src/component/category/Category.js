@@ -1,20 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Get from './Get';
 import './Category.css';
 
-function Category({list, setList}) {
+function Category() {
+    const [list, setList] = useState([]);
     const [brand, setBrand] = useState(null);
+
+    useEffect(() => {
+        if (brand) { // 브랜드 값이 있을 때만 실행
+            const clientId = "C88k7kKQEPtcbHOYYaRs";
+            const clientSecret = "5XoMjg7Tdx";
+
+            fetch(
+                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
+                method: "GET",
+                headers: {
+                    "X-Naver-Client-Id": clientId,
+                    "X-Naver-Client-Secret": clientSecret,
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => setList(json.items));
+        }
+    }, [brand]); // brand 값이 변경될 때마다 실행
+
+    function firstPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 10000 && item.lprice <= 20000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
+
+    function secondPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 20001 && item.lprice <= 40000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
+
+    function thirdPriceRange() {
+        const priceTemp = list.filter(item => item.lprice >= 40001 && item.lprice <= 80000)
+        console.log(priceTemp)
+        setList(priceTemp)
+    }
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category); // 브랜드 상태 업데이트
     };
 
-    // 카테고리 클릭 핸들러
-    const handlePriceClick = (minPrice, maxPrice) => {
-        setBrand(`${minPrice} ~ ${maxPrice}`); // 브랜드 가격 상태 업데이트
-    };
 
     // 각 버튼에 대한 텍스트 배열
     const buttons = [
@@ -23,11 +56,7 @@ function Category({list, setList}) {
             , '스피도', 'UNKNOWN', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '르망고', '아날도바시니', '쿠기'
             , '제인코트', 'GANNI', 'H&M', '스키즈', 'TOTEME', '데이즈데이즈', '닉스원', '필로드', '헤링본', '돌핀', '티에스나인', '에르메스', '오스카', '알라이아 컷아웃', '샤넬', '구찌'],
         ['빨강', '파랑', '초록', '노랑', '주황', '보라', '아이보리', '민트', '핑크', '화이트', '블랙'],
-        {
-            '1만원 ~ 2만원': { min: 10000, max: 20000 },
-            '2만원 ~ 4만원': { min: 20000, max: 40000 },
-            '4만원 ~ 8만원': { min: 40000, max: 80000 }
-        }
+    
     ];
 
 
@@ -35,7 +64,7 @@ function Category({list, setList}) {
 
     return (
         <>
-            <Get brand={brand} list={list} setList={setList} />
+            
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">
@@ -78,12 +107,13 @@ function Category({list, setList}) {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            {Object.entries(buttons[3]).map(([label, { min, max }]) => (
-                                <button className="button" onClick={() => handlePriceClick(min, max)}>{label}</button>
-                            ))}
+                                <button className="button" onClick={() => firstPriceRange()}>10,000원~20,000원</button>
+                                <button className="button" onClick={() => secondPriceRange()}>20,000원~40,000원</button>
+                                <button className="button" onClick={() => thirdPriceRange()}>40,000원~80,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
+                <Get brand={brand} list={list} setList={setList} />
             </Accordion>
         </>
 
