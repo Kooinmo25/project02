@@ -2,7 +2,16 @@ import { useEffect, useState } from "react";
 import PopItemCard from "./PopItemCard";
 import { Row, Col } from "react-bootstrap";
 
-function GetPopularItem({list, setList}) {
+// 배열을 랜덤하게 섞는 함수
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+function GetPopularItem() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -26,14 +35,6 @@ function GetPopularItem({list, setList}) {
         fetchData();
     }, []);
 
-    // 배열을 랜덤하게 섞는 함수
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-        return array;
-    }
 
     return (
         <Row xs={1} md={2} className='g-4'>

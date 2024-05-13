@@ -14,9 +14,9 @@ function addCommas(num) {
 
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
-    const [isDeleted, setIsDeleted] = useState(false); 
-    const commas =addCommas(props.price);
-    const isMobile = useMediaQuery({ maxWidth: 768});
+    const [isDeleted, setIsDeleted] = useState(false);
+    const commas = addCommas(props.price);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
@@ -31,24 +31,28 @@ function ValueReturn(props) {
 
     return (
         <div className='product-item'>
-            <Stack direction= {isMobile ? "vertical" : "horizontal"} gap={3}>
+            <Stack gap={3} className="flex-row align-items-center">
                 <div>
-                    <input 
-                    type='checkBox' 
-                    value={props.id} 
-                    onChange={() => {
-                        props.setCheck(!props.check)
-                    }} />
+                    <input
+                        type='checkBox'
+                        value={props.id}
+                        onChange={() => {
+                            props.setCheck(!props.check)
+                        }} />
                 </div>
                 <div className="img">
-                    <img 
-                    src={props.image} 
-                    alt="Product"
-                    style={{ width : isMobile ? "20rem" : "32rem",
-                             height: isMobile ? "20rem" : "32rem"}}></img>
+                    <img
+                        src={props.image}
+                        alt="Product"
+                        style={{
+                            width: isMobile ? "10rem" : "16rem",
+                            height: isMobile ? "10rem" : "16rem"
+                        }}></img>
                 </div>
-                <div className="title">{titledel}</div>
-                <div className="price">{commas}</div>
+                <div>
+                    <div className="title">{titledel}</div>
+                    <div className="price">{commas}원</div>
+                </div>
                 <CloseButton onClick={delCartList} />
             </Stack>
         </div>

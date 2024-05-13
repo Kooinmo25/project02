@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import TwoButton from './TwoButton';
-// import TopStack from './TopStack';
 import ShoopingCart from './ShoopingCart';
 import BottomStack from './BottomStack';
 import Explain from './Explain';
@@ -15,13 +14,12 @@ function Cartreturn() {
     return (
         <div>
             <TwoButton check={check} setCheck={setCheck} />
-            {/* <TopStack/> */}
+            <hr />
             <ShoopingCart check={check} setCheck={setCheck} />
+            <hr className='my-4'/>
             <BottomStack/>
-            <Explain/>
-
-
-    
+            <hr className='my-4'/>
+            <Explain/>   
         </div>
     )
 }
