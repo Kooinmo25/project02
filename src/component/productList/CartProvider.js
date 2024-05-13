@@ -5,9 +5,10 @@ import CartContext from './CartContext';
 
 const CartProvider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0)
 
     return (
-        <CartContext.Provider value={{ cartList, setCartList }}>
+        <CartContext.Provider value={{ cartList, setCartList, totalPrice, setTotalPrice }}>
             {children}
         </CartContext.Provider>
     );

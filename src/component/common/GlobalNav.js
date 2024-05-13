@@ -12,7 +12,8 @@ function GlobalNav() {
 
   useEffect(() => {
     setCartItemCount(cartList.length);
-    console.log(cartList)
+    console.log('cartListLength', cartList.length)
+    console.log('cartList', cartList)
   }, [cartList]);
 
   return (

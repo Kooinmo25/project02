@@ -11,13 +11,14 @@ import Explain from './Explain';
 function Cartreturn() {
 
     const [check, setCheck] = useState(false)
+    const [totalPrice, setTotalPrice] = useState(0); // 상품 총 가격
 
     return (
         <div>
             <TwoButton check={check} setCheck={setCheck} />
             {/* <TopStack/> */}
-            <ShoopingCart check={check} setCheck={setCheck} />
-            <BottomStack/>
+            <ShoopingCart check={check} setCheck={setCheck}  />
+            <BottomStack totalPrice={totalPrice} setTotalPrice={setTotalPrice} />
             <Explain/>
 
 

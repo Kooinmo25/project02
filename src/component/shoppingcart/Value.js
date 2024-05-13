@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
+import Form from 'react-bootstrap/Form';
+import CartContext from '../productList/CartContext';
 
 // b삭제
 function removebtag(text) {
@@ -15,9 +17,25 @@ function addCommas(num) {
 
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
+    const [count, setCount] = useState(1);
     const [isDeleted, setIsDeleted] = useState(false);
-    const commas = addCommas(props.price);
     const isMobile = useMediaQuery({ maxWidth: 768 });
+    const { totalPrice, setTotalPrice } = useContext(CartContext);
+
+    useEffect(() => {
+    }, [count, totalPrice, setTotalPrice]);
+
+    function plusButton() {
+        setCount(count + 1);
+        setTotalPrice(totalPrice + (count * props.price))
+    }
+
+    function minusButton() {
+        if (count > 1) {
+            setCount(count - 1);
+            setTotalPrice(totalPrice - props.price); // 
+        }
+    }
 
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
@@ -30,17 +48,25 @@ function ValueReturn(props) {
         return null;
     }
 
-    
     return (
         <div className='product-item'>
             <Stack direction={isMobile ? "vertical" : "horizontal"} gap={3}>
                 <div>
-                    <input
-                        type='checkBox'
-                        value={props.id}
-                        onChange={() => {
-                            props.setCheck(!props.check)
-                        }} />
+                    <Form>
+                        {['checkbox'].map((type) => (
+                            <div key={`inline-${type}`} className="mb-3">
+                                <Form.Check
+                                    inline
+                                    label="1"
+                                    name="group1"
+                                    type={type}
+                                    id={`inline-${type}-1`}
+                                    checked={props.check}
+                                    onChange={() => props.setCheck(!props.check)}
+                                />
+                            </div>
+                        ))}
+                    </Form>
                 </div>
                 <div className="cartBox">
                     <img
@@ -49,10 +75,16 @@ function ValueReturn(props) {
                         style={{
                             width: isMobile ? "7rem" : "8rem",
                             height: isMobile ? "7rem" : "8rem"
-                        }}></img>
+                        }}
+                    />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{commas}원</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
+                <div>
+                    <button onClick={minusButton}>-</button>
+                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
+                    <button onClick={plusButton}>+</button>
+                </div>
                 <CloseButton onClick={delCartList} />
             </Stack>
         </div>
