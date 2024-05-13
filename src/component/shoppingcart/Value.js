@@ -4,6 +4,8 @@ import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
 
+
+
 // b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
