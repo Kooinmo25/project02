@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalNav from '../common/GlobalNav';
 import Footer from './Footer';
-import Welcome from '../home/Welcome';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import CartProvider from '../productList/CartProvider';
-import Cartreturn from '../shoppingcart/Total';
+import Welcome from '../home/Welcome.js'
+import Cartreturn from '../shoppingcart/Total.js';
+
 
 
 function Layout() {
@@ -18,7 +19,7 @@ function Layout() {
 
     return (
         <CartProvider>
-            <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+            <div className="d-flex flex-column" style={{ minHeight: '100vh', width: '70%', margin: '0 auto' }}>
                 <div className="p-2"><GlobalNav /></div>
                 <div className="p-2 flex-grow-1">
                     <BrowserRouter>
@@ -31,7 +32,7 @@ function Layout() {
                             <Route path="/category" element={<Filter list={list} setList={setList} />} />
                             <Route
                                 path="/shoppingcart"
-                                element={<Cartreturn />}
+                                element={<Cartreturn list={list} setList={setList} />}
                             />
                         </Routes>
                     </BrowserRouter>

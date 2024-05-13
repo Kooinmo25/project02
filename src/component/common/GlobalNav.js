@@ -1,10 +1,20 @@
+import { useContext, useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import CartContext from '../productList/CartContext';
 
 function GlobalNav() {
   const expand = 'md';
+  const { cartList, setCartList } = useContext(CartContext);  
+  const [cartItemCount, setCartItemCount] = useState(cartList.length);
+
+  useEffect(() => {
+    setCartItemCount(cartList.length);
+    console.log('cartListLength', cartList.length)
+    console.log('cartList', cartList)
+  }, [cartList]);
 
   return (
     <>
@@ -27,9 +37,11 @@ function GlobalNav() {
                 <Nav.Link href="/">홈</Nav.Link>
                 <Nav.Link href="productlist">상품</Nav.Link>
                 <Nav.Link href="category">카테고리</Nav.Link>
-                <Nav.Link href="shoppingcart">장바구니</Nav.Link>
+                <Nav.Link href="shoppingcart">장바구니<div style={{display: 'inline-block', width: '23px', height: '23px', textAlign: 'center', backgroundColor: 'red', borderRadius: '15px'}}>
+                  <span style={{color: 'white', fontSize: '16px', fontWeight: 'bold'}}>{cartItemCount}</span>
+                </div>
+                </Nav.Link>
               </Nav>
-
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>

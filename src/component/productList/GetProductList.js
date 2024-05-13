@@ -3,7 +3,9 @@ import ProductList from "./ProductList";
 import { Row } from "react-bootstrap";
 import Col from 'react-bootstrap/Col';
 
-function GetProductList({ sortNum, pageNum, list, setList }) {
+
+
+function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
 
 
 
@@ -12,7 +14,10 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
 
 
     useEffect(() => {
-        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${sortNum}`, {
+        
+
+        
+        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=${priceSort}&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": clientId,
@@ -23,22 +28,24 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
             .then(json => setList(json.items))
             console.log(pageNum)
 
-    }, [sortNum, pageNum])
+    }, [sortNum, pageNum, priceSort])
 
     return (
         <Row xs={1} md={2} lg={sortNum} className="g-4">
-            <Col>
-                {list.map((item, index) => (
-                    <ProductList
-                        key={index}
-                        title={item.title}
-                        image={item.image}
-                        price={item.lprice}
-                    />
-                ))}
+            {list.map((item) => (
+            <Col key={item.productId}>
+                <ProductList
+                    title={item.title}
+                    image={item.image}
+                    price={item.lprice}
+                    id={item.productId}
+                    brand={item.brand}
+                />
             </Col>
+            ))}
         </Row>
     )
+
 }
 
 export default GetProductList
