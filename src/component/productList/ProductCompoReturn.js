@@ -1,29 +1,37 @@
 import SortButton from "./SortButton";
 import GetProductList from "./GetProductList";
 import { useState } from "react";
-import Pages from "./PagiNation";
+import InputBox from "./InputBox";
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+import SortList from "./SortList";
+import PageNation from "./PageNation";
+import './ProductCompoReturn.css'
 
 
-
-function ProductCompoReturn({ list, setList,}) {
+function ProductCompoReturn({ list, setList }) {
 
     const [sortNum, setSortNum] = useState(4);
     const [pageNum, setPageNum] = useState(1);
+    const [priceSort, setPriceSort] = useState('sim');
 
-    
+
 
     return (
 
         <div>
-            <SortButton setSortNum={setSortNum} />
+            <ButtonGroup >
+                <SortButton setSortNum={setSortNum} setPriceSort={setPriceSort} />
+                <SortList setPriceSort={setPriceSort} list={list} setList={setList} />
+                <InputBox list={list} setList={setList} />
+            </ButtonGroup>
             <GetProductList
                 list={list}
                 setList={setList}
                 sortNum={sortNum}
                 pageNum={pageNum}
-                add
+                priceSort={priceSort}
             />
-            <Pages setPageNum={setPageNum} />
+            <PageNation setPageNum={setPageNum} />
         </div>
     );
 }

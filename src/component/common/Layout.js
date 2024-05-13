@@ -6,8 +6,9 @@ import Footer from './Footer';
 import ProductCompoReturn from '../productList/ProductCompoReturn';
 import Filter from '../category/Filter';
 import CartProvider from '../productList/CartProvider';
-import Cartreturn from '../shoppingcart/Total';
-import Welcome from '../home/Welcome.js';
+import Welcome from '../home/Welcome.js'
+import Cartreturn from '../shoppingcart/Total.js';
+
 
 
 
@@ -19,7 +20,7 @@ function Layout() {
 
     return (
         <CartProvider>
-            <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+            <div className="d-flex flex-column" style={{ minHeight: '100vh', width: '70%', margin: '0 auto' }}>
                 <div className="p-2"><GlobalNav /></div>
                 <div className="p-2 flex-grow-1">
                     <BrowserRouter>

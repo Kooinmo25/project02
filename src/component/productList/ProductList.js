@@ -3,6 +3,11 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
 import CartContext from './CartContext';
+import Button from 'react-bootstrap/Button';
+import ProductDetail from './ProductDetail';
+
+
+
 
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -16,33 +21,38 @@ function ProductList(props) {
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
     const { cartList, setCartList } = useContext(CartContext);
-    
+
     const handleAddToCart = () => {
-        const item = { title: props.title, image: props.image, price: props.price };
-        const updatedCartList = [...cartList, item];
-        setCartList(updatedCartList);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList)); 
+        const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
+        const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
+        cartList.push(item);
+        localStorage.setItem('cartList', JSON.stringify(cartList));
+        setCartList(cartList); // 장바구니 아이콘 옆의 숫자 업데이트
     };
+
 
     useEffect(() => {
         const savedCartList = JSON.parse(localStorage.getItem('cartList'));
         if (savedCartList) {
             setCartList(savedCartList);
         }
+
+
     }, [setCartList]);
 
     return (
 
-        <Col className='productList' style={{ width: '80%', height: "40rem" }}>
+        <Col className='productList' style={{ width: '80%', height: "100%" }}>
             <Card>
-                <Card.Img variant="top" src={props.image} />
+                <Card.Img className='card-img' variant="top" src={props.image} />
                 <Card.Body>
                     <Card.Title className="text-truncate">{titleDel}</Card.Title>
                     <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
                         {commas} 원
                     </Card.Text>
                     <Card.Text>
-                        <button onClick={handleAddToCart}>장바구니 담기</button>
+                        <ProductDetail props={props} />
+                        <Button variant="info" size='sm' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
                     </Card.Text>
                 </Card.Body>
             </Card>

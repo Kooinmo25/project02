@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import ValueReturn from './Value';
 import CartContext from '../productList/CartContext';
 
-function ShoppingCart() {
+function ShoppingCart({ check, setCheck }) {
     const { cartList, setCartList } = useContext(CartContext);
 
     useEffect(() => {
@@ -11,9 +11,8 @@ function ShoppingCart() {
         if (savedCartList) {
             setCartList(savedCartList);
         }
+        console.log(savedCartList)
     }, [setCartList]);
-
-
 
     return (
         <>
@@ -23,8 +22,13 @@ function ShoppingCart() {
                     title={item.title}
                     image={item.image}
                     price={item.price}
+                    id={item.id}
+                    check={check}
+                    setCheck={setCheck}
+                    
                 />
             ))}
+
         </>
     );
 }
