@@ -13,12 +13,12 @@ function addCommas(num) {
 }
 
 
-function ProductDetail({props}) {
+function ProductDetail({ props }) {
     const [lgShow, setLgShow] = useState(false);
 
     const titleDel = removebtag(props.title)
     const commas = addCommas(props.price)
-    
+
     return (
         <>
             <Button variant="primary" size='sm' onClick={() => setLgShow(true)}>자세히 보기</Button>

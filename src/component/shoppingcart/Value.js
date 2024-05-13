@@ -6,6 +6,8 @@ import './Value.css'
 import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 
+
+
 // b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');

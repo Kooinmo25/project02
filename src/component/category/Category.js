@@ -7,44 +7,12 @@ function Category() {
     const [list, setList] = useState([]);
     const [brand, setBrand] = useState(null);
 
-
-
-    useEffect(() => {
-        if (brand) { // 브랜드 값이 있을 때만 실행
-            const clientId = "C88k7kKQEPtcbHOYYaRs";
-            const clientSecret = "5XoMjg7Tdx";
-
-            fetch(
-                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
-                method: "GET",
-                headers: {
-                    "X-Naver-Client-Id": clientId,
-                    "X-Naver-Client-Secret": clientSecret,
-                },
-            })
-                .then((response) => response.json())
-                .then((json) => setList(json.items));
-        }
-    }, [brand]); // brand 값이 변경될 때마다 실행
-
-    function firstPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 10000 && item.lprice <= 20000)
-        console.log(priceTemp)
-        setList(priceTemp)
+    // 가격 필터
+    function filterByPriceRange(minPrice, maxPrice) {
+        const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
+        console.log(priceTemp);
+        setList(priceTemp);
     }
-
-    function secondPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 20001 && item.lprice <= 40000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-
-    function thirdPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 40001 && item.lprice <= 80000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-  
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
@@ -59,7 +27,6 @@ function Category() {
             , '스피도', 'UNKNOWN', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '르망고', '아날도바시니', '쿠기'
             , '제인코트', 'GANNI', 'H&M', '스키즈', 'TOTEME', '데이즈데이즈', '닉스원', '필로드', '헤링본', '돌핀', '티에스나인', '에르메스', '오스카', '알라이아 컷아웃', '샤넬', '구찌'],
         ['빨강', '파랑', '초록', '노랑', '주황', '보라', '아이보리', '민트', '핑크', '화이트', '블랙'],
-    
     ];
 
 
@@ -67,7 +34,7 @@ function Category() {
 
     return (
         <>
-            
+
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">
@@ -110,9 +77,11 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                                <button className="button" onClick={() => firstPriceRange()}>10,000원 ~ 20,000원</button>
-                                <button className="button" onClick={() => secondPriceRange()}>20,000원 ~ 40,000원</button>
-                                <button className="button" onClick={() => thirdPriceRange()}>40,000원 ~ 80,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(10000, 20000)}>10,000원 ~ 20,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(20000, 40000)}>20,000원 ~ 40,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(40000, 80000)}>40,000원 ~ 80,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(80000, 120000)}>80,000원 ~ 120,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(120000, 180000)}>120,000원 ~ 180,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
