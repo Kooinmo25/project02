@@ -12,19 +12,15 @@
     align-items: center;
 }
 
-/* 버튼 그룹을 우측으로 정렬 */
-.ButtonGroup {
+
+
+
+.button-group { 
     display: flex;
     justify-content: flex-end;
 }
 
-/* PageNation 컴포넌트를 가운데로 정렬 */
-.PageNation {
+.page-nation {
     display: flex;
     justify-content: center;
-}
-
-.button-group {
-    display: flex;
-    justify-content: flex-end;
 }

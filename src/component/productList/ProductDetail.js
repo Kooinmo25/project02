@@ -34,7 +34,7 @@ function ProductDetail({ props }) {
                         {titleDel}
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body><img src={props.image} alt={titleDel} style={{maxWidth: '100%', margin: 'auto', display: 'block'}}/></Modal.Body>
+                <Modal.Body><img src={props.image} alt={titleDel} style={{maxWidth: '50%', margin: 'auto', display: 'block'}}/></Modal.Body>
                 <Modal.Header><span style={{fontSize: '20px'}}>브랜드: {props.brand ? props.brand : "자사몰"}</span></Modal.Header>
                 <Modal.Header><span style={{fontSize: '20px'}}>가격: {commas}원</span></Modal.Header>
             </Modal>
