@@ -21,18 +21,24 @@ function Get({ brand, list, setList }) {
         }
     }, [brand]); // brand 값이 변경될 때마다 실행
 
+
+
     return (
-        <Row xs={1} md={2} lg={4} className="g-4">
-            {list.map((item, index) => (
-                <Col key={index}>
-                    <ProductList
-                        title={item.title}
-                        image={item.image}
-                        price={item.lprice}
-                    />
-                </Col>
-            ))}
-        </Row>
+        <>
+            {list && list.length > 0 && (
+                <Row xs={1} md={2} lg={4} className="g-4">
+                    {list.map((item, index) => (
+                        <Col key={index}>
+                            <ProductList
+                                title={item.title}
+                                image={item.image}
+                                price={item.lprice}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </>
     )
 }
 

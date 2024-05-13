@@ -28,12 +28,11 @@ function ProductList(props) {
     const handleAddToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
-        const cartKey = props.id
         cartList.push(item);
         localStorage.setItem('cartList', JSON.stringify(cartList));
-        console.log(cartKey)
-
+        setCartList(cartList); // 장바구니 아이콘 옆의 숫자 업데이트
     };
+
 
     useEffect(() => {
         const savedCartList = JSON.parse(localStorage.getItem('cartList'));

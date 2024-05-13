@@ -6,6 +6,8 @@ import './Value.css'
 import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 
+
+
 // b삭제
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -22,18 +24,30 @@ function ValueReturn(props) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const { totalPrice, setTotalPrice } = useContext(CartContext);
 
+
+    function reset() {
+        setTotalPrice(0)
+    }
+
     useEffect(() => {
     }, [count, totalPrice, setTotalPrice]);
 
     function plusButton() {
         setCount(count + 1);
-        setTotalPrice(totalPrice + (count * props.price))
+        if (totalPrice === 0) {
+            setTotalPrice(totalPrice + (count * props.price))
+        } else {
+            setTotalPrice(totalPrice + ( props.price * 1))
+        }
     }
 
     function minusButton() {
         if (count > 1) {
             setCount(count - 1);
-            setTotalPrice(totalPrice - props.price); // 
+        }
+
+        if(totalPrice !== 0) {
+            setTotalPrice(totalPrice -(1 * props.price)); // 
         }
     }
 
@@ -79,11 +93,12 @@ function ValueReturn(props) {
                     />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price)}원</span></div>
                 <div>
                     <button onClick={minusButton}>-</button>
                     <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
                     <button onClick={plusButton}>+</button>
+                    <button onClick={reset}>reset</button>
                 </div>
                 <CloseButton onClick={delCartList} />
             </Stack>

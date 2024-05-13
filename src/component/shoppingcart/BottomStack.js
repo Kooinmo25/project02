@@ -8,10 +8,14 @@ function addCommas(num) {
 
 function BottomStack() {
     const { totalPrice, setTotalPrice } = useContext(CartContext);
+    let comma = addCommas(totalPrice)
+    let totalComma= addCommas(totalPrice + 3000)
 
+    
     useEffect(() => {
         console.log('totalPrice', totalPrice)
-        
+        console.log('commas', comma)
+        console.log('commas', typeof comma)
     },[totalPrice, setTotalPrice])
 
     return (
@@ -19,7 +23,7 @@ function BottomStack() {
             <Row className="align-items-center">
                 <Col xs={4} className="text-center" style={{ borderRight: '1px solid #ccc' }}>
                     <div>총 상품금액</div>
-                    <div>{totalPrice}원</div>
+                    <div>{comma}원</div>
                 </Col>
                 <Col xs={4} className="text-center" style={{ borderRight: '1px solid #ccc' }}>
                     <div>배송비</div>
@@ -27,7 +31,7 @@ function BottomStack() {
                 </Col>
                 <Col xs={4} className="text-center">
                     <div>결제예정금액</div>
-                    <div>{totalPrice}원</div>
+                    <div>{totalComma}원</div>
                 </Col>
             </Row>
         </Container>
