@@ -2,8 +2,8 @@
 
 import Button from 'react-bootstrap/Button';
 
-function Pages({ setPageNum }) {
-    const pageChange = (newPage) => {
+function PageNation({ setPageNum }) {
+    const pageChange = (newPage) => {   
         setPageNum(newPage);
         window.scrollTo(0, 0)
     };
@@ -19,4 +19,4 @@ function Pages({ setPageNum }) {
     )
 }
 
-export default Pages
+export default PageNation

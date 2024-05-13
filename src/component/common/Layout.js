@@ -20,7 +20,7 @@ function Layout() {
 
     return (
         <CartProvider>
-            <div className="d-flex flex-column" style={{ minHeight: '100vh' }}>
+            <div className="d-flex flex-column" style={{ minHeight: '100vh', width: '70%', margin: '0 auto' }}>
                 <div className="p-2"><GlobalNav /></div>
                 <div className="p-2 flex-grow-1">
                     <BrowserRouter>
