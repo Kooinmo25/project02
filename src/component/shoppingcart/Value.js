@@ -27,6 +27,7 @@ function ValueReturn(props) {
 
     function reset() {
         setTotalPrice(0)
+        setCount(0)
     }
 
     useEffect(() => {
@@ -66,7 +67,7 @@ function ValueReturn(props) {
         <div className='product-item'>
             <Stack direction={isMobile ? "vertical" : "horizontal"} gap={3}>
                 <div>
-                    <Form>
+                    {/* <Form>
                         {['checkbox'].map((type) => (
                             <div key={`inline-${type}`} className="mb-3">
                                 <Form.Check
@@ -80,7 +81,7 @@ function ValueReturn(props) {
                                 />
                             </div>
                         ))}
-                    </Form>
+                    </Form> */}
                 </div>
                 <div className="cartBox">
                     <img
