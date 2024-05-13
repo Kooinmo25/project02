@@ -7,6 +7,8 @@ function Category() {
     const [list, setList] = useState([]);
     const [brand, setBrand] = useState(null);
 
+
+
     useEffect(() => {
         if (brand) { // 브랜드 값이 있을 때만 실행
             const clientId = "C88k7kKQEPtcbHOYYaRs";
@@ -42,6 +44,7 @@ function Category() {
         console.log(priceTemp)
         setList(priceTemp)
     }
+  
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
@@ -107,9 +110,9 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                                <button className="button" onClick={() => firstPriceRange()}>10,000원~20,000원</button>
-                                <button className="button" onClick={() => secondPriceRange()}>20,000원~40,000원</button>
-                                <button className="button" onClick={() => thirdPriceRange()}>40,000원~80,000원</button>
+                                <button className="button" onClick={() => firstPriceRange()}>10,000원 ~ 20,000원</button>
+                                <button className="button" onClick={() => secondPriceRange()}>20,000원 ~ 40,000원</button>
+                                <button className="button" onClick={() => thirdPriceRange()}>40,000원 ~ 80,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
