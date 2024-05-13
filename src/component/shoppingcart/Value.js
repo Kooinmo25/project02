@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
+import './Value.css'
 
 // b삭제
 function removebtag(text) {
@@ -14,9 +15,9 @@ function addCommas(num) {
 
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
-    const [isDeleted, setIsDeleted] = useState(false); 
-    const commas =addCommas(props.price);
-    const isMobile = useMediaQuery({ maxWidth: 768});
+    const [isDeleted, setIsDeleted] = useState(false);
+    const commas = addCommas(props.price);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
@@ -31,24 +32,26 @@ function ValueReturn(props) {
 
     return (
         <div className='product-item'>
-            <Stack direction= {isMobile ? "vertical" : "horizontal"} gap={3}>
+            <Stack direction={isMobile ? "vertical" : "horizontal"} gap={3}>
                 <div>
-                    <input 
-                    type='checkBox' 
-                    value={props.id} 
-                    onChange={() => {
-                        props.setCheck(!props.check)
-                    }} />
+                    <input
+                        type='checkBox'
+                        value={props.id}
+                        onChange={() => {
+                            props.setCheck(!props.check)
+                        }} />
                 </div>
-                <div className="img">
-                    <img 
-                    src={props.image} 
-                    alt="Product"
-                    style={{ width : isMobile ? "20rem" : "32rem",
-                             height: isMobile ? "20rem" : "32rem"}}></img>
+                <div className="cartBox">
+                    <img
+                        src={props.image}
+                        alt="Product"
+                        style={{
+                            width: isMobile ? "7rem" : "8rem",
+                            height: isMobile ? "7rem" : "8rem"
+                        }}></img>
                 </div>
-                <div className="title">{titledel}</div>
-                <div className="price">{commas}</div>
+                <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{commas}원</span></div>
                 <CloseButton onClick={delCartList} />
             </Stack>
         </div>

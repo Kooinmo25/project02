@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand, price }) {
-    const [list, setList] = useState([]);
+function Get({ brand, list, setList }) {
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
     useEffect(() => {
-        if (brand || price) {
-            let url;
-            if (typeof brand === 'string') {
-                url = `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`;
-            } else if (price.min && price.max) {
-                url = `/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=100&start=1&min=${price.min}&max=${price.max}`;
-            }
-
-            fetch(url, {
+        if (brand) { // 브랜드 값이 있을 때만 실행
+            fetch(
+                `/v1/search / shop ? query = ${brand}수영복 & filter=used: false & sort=sim & display=100 & start=1`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": clientId,
@@ -24,10 +17,9 @@ function Get({ brand, price }) {
                 },
             })
                 .then((response) => response.json())
-                .then((json) => setList(json.items))
-                .catch((error) => console.error('Error fetching data:', error));
+                .then((json) => setList(json.items));
         }
-    }, [brand, price]);
+    }, [brand]); // brand 값이 변경될 때마다 실행
 
     return (
         <Row xs={1} md={2} lg={4} className="g-4">
@@ -36,7 +28,7 @@ function Get({ brand, price }) {
                     <ProductList
                         title={item.title}
                         image={item.image}
-                        price={item.lprice} // lprice를 전달
+                        price={item.lprice}
                     />
                 </Col>
             ))}
