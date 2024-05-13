@@ -7,8 +7,6 @@ function Category() {
     const [list, setList] = useState([]);
     const [brand, setBrand] = useState(null);
 
-
-
     useEffect(() => {
         if (brand) { // 브랜드 값이 있을 때만 실행
             const clientId = "C88k7kKQEPtcbHOYYaRs";
@@ -49,11 +47,6 @@ function Category() {
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category); // 브랜드 상태 업데이트
-    };
-
-    // 카테고리 클릭 핸들러
-    const handlePriceClick = (minPrice, maxPrice) => {
-        setBrand(`${minPrice} ~ ${maxPrice}`); // 브랜드 가격 상태 업데이트
     };
 
     // 각 버튼에 대한 텍스트 배열
