@@ -31,8 +31,8 @@ function SortList({ setPriceSort, list, setList }) {
 
             <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1" onClick={() => setPriceSort('sim')}>정확도순</Dropdown.Item>
-                <Dropdown.Item href="#/action-2" onClick={() => priceUp({ list, setList })}>가격 오름차순</Dropdown.Item>
-                <Dropdown.Item href="#/action-3" onClick={() => priceDown({ list, setList })}>가격 내림차순</Dropdown.Item>
+                <Dropdown.Item href="#/action-2" onClick={() => priceUp({ list, setList })}>가격 낮은순</Dropdown.Item>
+                <Dropdown.Item href="#/action-3" onClick={() => priceDown({ list, setList })}>가격 높은순</Dropdown.Item>
             </Dropdown.Menu>
         </Dropdown>
     );
