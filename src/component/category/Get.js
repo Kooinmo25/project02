@@ -9,7 +9,7 @@ function Get({ brand, list, setList }) {
     useEffect(() => {
         if (brand) { // 브랜드 값이 있을 때만 실행
             fetch(
-                `/v1/search / shop ? query = ${brand}수영복 & filter=used: false & sort=sim & display=100 & start=1`, {
+                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": clientId,
@@ -21,18 +21,24 @@ function Get({ brand, list, setList }) {
         }
     }, [brand]); // brand 값이 변경될 때마다 실행
 
+
+
     return (
-        <Row xs={1} md={2} lg={4} className="g-4">
-            {list.map((item, index) => (
-                <Col key={index}>
-                    <ProductList
-                        title={item.title}
-                        image={item.image}
-                        price={item.lprice}
-                    />
-                </Col>
-            ))}
-        </Row>
+        <>
+            {list && list.length > 0 && (
+                <Row xs={1} md={2} lg={4} className="g-4">
+                    {list.map((item, index) => (
+                        <Col key={index}>
+                            <ProductList
+                                title={item.title}
+                                image={item.image}
+                                price={item.lprice}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </>
     )
 }
 
