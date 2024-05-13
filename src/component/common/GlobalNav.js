@@ -7,13 +7,13 @@ import CartContext from '../productList/CartContext';
 
 function GlobalNav() {
   const expand = 'md';
-  const { cartList } = useContext(CartContext);
+  const { cartList, setCartList } = useContext(CartContext);
   const [cartItemCount, setCartItemCount] = useState(cartList.length);
 
   useEffect(() => {
-    // 장바구니 상품 수가 변경될 때마다 카운트 업데이트
     setCartItemCount(cartList.length);
-    console.log(cartList)
+    console.log('cartListLength', cartList.length)
+    console.log('cartList', cartList)
   }, [cartList]);
 
   return (
@@ -37,7 +37,10 @@ function GlobalNav() {
                 <Nav.Link href="/">홈</Nav.Link>
                 <Nav.Link href="productlist">상품</Nav.Link>
                 <Nav.Link href="category">카테고리</Nav.Link>
-                <Nav.Link href="shoppingcart">장바구니{cartItemCount}</Nav.Link>
+                <Nav.Link href="shoppingcart">장바구니<div style={{ display: 'inline-block', width: '23px', height: '23px', textAlign: 'center', backgroundColor: 'red', borderRadius: '15px' }}>
+                  <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>{cartItemCount}</span>
+                </div>
+                </Nav.Link>
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>

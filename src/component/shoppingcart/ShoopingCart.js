@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import ValueReturn from './Value';
 import CartContext from '../productList/CartContext';
 
-function ShoppingCart({check, setCheck}) {
+function ShoppingCart({ check, setCheck }) {
     const { cartList, setCartList } = useContext(CartContext);
 
     useEffect(() => {
@@ -25,9 +25,10 @@ function ShoppingCart({check, setCheck}) {
                     id={item.id}
                     check={check}
                     setCheck={setCheck}
+                    
                 />
             ))}
-            
+
         </>
     );
 }

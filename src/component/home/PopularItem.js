@@ -16,7 +16,7 @@ function GetPopularItem() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const randomStart = Math.floor(Math.random() * 100);
+            const randomStart = Math.floor(Math.random() * 99) + 1;
             const ClientId = "q6nJostYODpavlKH_pBH";
             const ClientPassword = "nSDltXmnhJ";
             const response = await fetch(
