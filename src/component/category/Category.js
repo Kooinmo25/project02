@@ -8,34 +8,10 @@ function Category() {
     const [brand, setBrand] = useState(null);
 
     // 가격 필터
-    function firstPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 10000 && item.lprice <= 20000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-
-    function secondPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 20001 && item.lprice <= 40000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-
-    function thirdPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 40001 && item.lprice <= 80000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-
-    function fourthPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 80001 && item.lprice <= 120000)
-        console.log(priceTemp)
-        setList(priceTemp)
-    }
-
-    function fivethPriceRange() {
-        const priceTemp = list.filter(item => item.lprice >= 120001 && item.lprice <= 180000)
-        console.log(priceTemp)
-        setList(priceTemp)
+    function filterByPriceRange(minPrice, maxPrice) {
+        const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
+        console.log(priceTemp);
+        setList(priceTemp);
     }
 
     // 카테고리 클릭 핸들러
@@ -102,11 +78,11 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            <button className="button" onClick={() => firstPriceRange()}>10,000원 ~ 20,000원</button>
-                            <button className="button" onClick={() => secondPriceRange()}>20,000원 ~ 40,000원</button>
-                            <button className="button" onClick={() => thirdPriceRange()}>40,000원 ~ 80,000원</button>
-                            <button className="button" onClick={() => fourthPriceRange()}>80,000원 ~ 120,000원</button>
-                            <button className="button" onClick={() => fivethPriceRange()}>120,000원 ~ 180,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(10000, 20000)}>10,000원 ~ 20,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(20000, 40000)}>20,000원 ~ 40,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(40000, 80000)}>40,000원 ~ 80,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(80000, 120000)}>80,000원 ~ 120,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(120000, 180000)}>120,000원 ~ 180,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
