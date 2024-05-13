@@ -3,9 +3,10 @@ import Accordion from 'react-bootstrap/Accordion';
 import Get from './Get';
 import './Category.css';
 
-function Category() {
+function Category(list, setList) {
     const [brand, setBrand] = useState(null);
     const [price, setPrice] = useState(null);
+    // const priceRange = list.map(item => item.lprice);
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
