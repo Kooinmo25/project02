@@ -15,8 +15,6 @@ function Cartreturn() {
             <ShoopingCart />
             <BottomStack/>
             <Explain/>
-
-     
         </div>
     )
 }

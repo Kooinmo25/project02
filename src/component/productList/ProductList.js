@@ -36,7 +36,7 @@ function ProductList(props) {
 
     return (
 
-        <Col className='productList' style={{ width: '30%', height: "40rem" }}>
+        <Col className='productList' style={{ width: '80%', height: "40rem" }}>
             <Card>
                 <Card.Img variant="top" src={props.image} />
                 <Card.Body>
@@ -45,7 +45,7 @@ function ProductList(props) {
                         {commas} 원
                     </Card.Text>
                     <Card.Text>
-                        <button onClick={handleAddToCart}>장바구니 담기</button>
+                        <button style={{background: "none", border: "2px solid", borderRadius: "15px"}}onClick={handleAddToCart}>장바구니 담기</button>
                     </Card.Text>
                 </Card.Body>
             </Card>
