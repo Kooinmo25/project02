@@ -21,23 +21,23 @@ function ProductList(props) {
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
     const { cartList, setCartList } = useContext(CartContext);
-    
+
     const handleAddToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
-        const cartList = JSON.parse(localStorage.getItem('cartList')) || []; 
+        const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const cartKey = props.id
         cartList.push(item);
         localStorage.setItem('cartList', JSON.stringify(cartList));
         console.log(cartKey)
 
-    };  
+    };
 
     useEffect(() => {
         const savedCartList = JSON.parse(localStorage.getItem('cartList'));
         if (savedCartList) {
             setCartList(savedCartList);
         }
-        
+
 
     }, [setCartList]);
 
@@ -51,9 +51,9 @@ function ProductList(props) {
                     <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
                         {commas} 원
                     </Card.Text>
-                    <ProductDetail props={props}/>
                     <Card.Text>
-                        <Button size='m' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart}/>
+                        <ProductDetail props={props} />
+                        <Button variant="info" size='sm' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
                     </Card.Text>
                 </Card.Body>
             </Card>

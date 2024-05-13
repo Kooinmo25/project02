@@ -21,7 +21,7 @@ function ProductDetail({props}) {
     
     return (
         <>
-            <Button onClick={() => setLgShow(true)}>자세히 보기</Button>
+            <Button variant="primary" size='sm' onClick={() => setLgShow(true)}>자세히 보기</Button>
 
             <Modal
                 size="lg"

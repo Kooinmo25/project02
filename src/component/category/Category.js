@@ -3,7 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Get from './Get';
 import './Category.css';
 
-function Category() {
+function Category({list, setList}) {
     const [brand, setBrand] = useState(null);
 
     // 카테고리 클릭 핸들러
@@ -35,7 +35,7 @@ function Category() {
 
     return (
         <>
-            <Get brand={brand} />
+            <Get brand={brand} list={list} setList={setList} />
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">

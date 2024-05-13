@@ -5,6 +5,7 @@ import InputBox from "./InputBox";
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import SortList from "./SortList";
 import PageNation from "./PageNation";
+import './ProductCompoReturn.css'
 
 
 function ProductCompoReturn({ list, setList }) {
@@ -18,7 +19,7 @@ function ProductCompoReturn({ list, setList }) {
     return (
 
         <div>
-            <ButtonGroup>
+            <ButtonGroup >
                 <SortButton setSortNum={setSortNum} setPriceSort={setPriceSort} />
                 <SortList setPriceSort={setPriceSort} list={list} setList={setList} />
                 <InputBox list={list} setList={setList} />
