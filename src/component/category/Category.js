@@ -5,8 +5,8 @@ import './Category.css';
 
 function Category() {
     const [list, setList] = useState([]);
-    const [filteredItems, setFilteredItems] = useState([]);  // 필터링된 아이템 상태 추가
-    const [selectedButton, setSelectedButton] = useState(null);  // 선택된 버튼의 상태 추가
+    const [filteredItems, setFilteredItems] = useState([]);
+    const [selectedButton, setSelectedButton] = useState(null);
     const [brand, setBrand] = useState(null);
 
     const clientId = "C88k7kKQEPtcbHOYYaRs";
@@ -15,14 +15,15 @@ function Category() {
     // 가격 필터
     function filterByPriceRange(minPrice, maxPrice) {
         const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
-        setFilteredItems(priceTemp);  // 필터링된 아이템만 업데이트
+        setFilteredItems(priceTemp);
+        setSelectedButton(`${minPrice}-${maxPrice}`);  // 선택된 버튼 상태 업데이트
     }
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
-        setBrand(category); // 브랜드 상태 업데이트
-        setSelectedButton(category);  // 선택된 버튼 상태 업데이트
-        fetchItems();  // 브랜드 선택 시 아이템 다시 불러오기
+        setBrand(category);
+        setSelectedButton(category);
+        fetchItems();
     };
 
     const getButtonClass = (button) => {
@@ -30,11 +31,11 @@ function Category() {
     };
 
     useEffect(() => {
-        fetchItems();  // 초기 데이터 불러오기 또는 브랜드 변경시 재호출
+        fetchItems();
     }, [brand]);
 
     const fetchItems = () => {
-        if (brand) { // 브랜드 값이 있을 때만 실행
+        if (brand) {
             fetch(
                 `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
                 method: "GET",
@@ -46,11 +47,11 @@ function Category() {
                 .then((response) => response.json())
                 .then((json) => {
                     setList(json.items);
-                    setFilteredItems(json.items); // 초기 로딩 시 필터링된 리스트도 업데이트
+                    setFilteredItems(json.items);
                 });
         }
     };
-    // 각 버튼에 대한 텍스트 배열
+
     const buttons = [
         ['남성', '여성'],
         ['아레나', '나이키', '르망고', '배럴', '후그', '센티', '키치피치', '스웨이브', '비키니밴더', '엘르', '토네이도', '미즈노', '발리비키', '티막', '나인에프엑스', '아디다스', '리복'
@@ -59,12 +60,22 @@ function Category() {
         ['빨강', '파랑', '초록', '노랑', '주황', '보라', '아이보리', '민트', '핑크', '화이트', '블랙'],
     ];
 
-
     const colorClasses = ['red-button', 'blue-button', 'green-button', 'yellow-button', 'orange-button', 'purple-button', 'ivory-button', 'mint-button', 'pink-button', 'white-button', 'black-button'];
+
+    const priceRanges = [
+        { min: 10000, max: 20000 },
+        { min: 20000, max: 40000 },
+        { min: 40000, max: 80000 },
+        { min: 80000, max: 120000 },
+        { min: 120000, max: 180000 },
+        { min: 180000, max: 360000 },
+        { min: 360000, max: 720000 },
+        { min: 720000, max: 1440000 },
+        { min: 1440000, max: 2880000 },
+    ];
 
     return (
         <>
-
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">
@@ -107,22 +118,15 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            <button className="button" onClick={() => filterByPriceRange(10000, 20000)}>10,000원 ~ 20,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(20000, 40000)}>20,000원 ~ 40,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(40000, 80000)}>40,000원 ~ 80,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(80000, 120000)}>80,000원 ~ 120,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(120000, 180000)}>120,000원 ~ 180,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(180000, 360000)}>180,000원 ~ 360,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(360000, 720000)}>360,000원 ~ 720,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(720000, 1440000)}>720,000원 ~ 1,440,000원</button>
-                            <button className="button" onClick={() => filterByPriceRange(1440000, 2880000)}>1,440,000원 ~ 2,880,000원</button>
+                            {priceRanges.map(({ min, max }) => (
+                                <button className={getButtonClass(`${min}-${max}`)} onClick={() => filterByPriceRange(min, max)}>{min.toLocaleString()}원 ~ {max.toLocaleString()}원</button>
+                            ))}
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
                 <Get brand={brand} list={list} setList={setList} filteredItems={filteredItems} />
             </Accordion>
         </>
-
     );
 }
 
