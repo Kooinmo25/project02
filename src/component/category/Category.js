@@ -5,26 +5,56 @@ import './Category.css';
 
 function Category() {
     const [list, setList] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);  // 필터링된 아이템 상태 추가
+    const [selectedButton, setSelectedButton] = useState(null);  // 선택된 버튼의 상태 추가
     const [brand, setBrand] = useState(null);
+
+    const clientId = "C88k7kKQEPtcbHOYYaRs";
+    const clientSecret = "5XoMjg7Tdx";
 
     // 가격 필터
     function filterByPriceRange(minPrice, maxPrice) {
         const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
-        console.log(priceTemp);
-        setList(priceTemp);
+        setFilteredItems(priceTemp);  // 필터링된 아이템만 업데이트
     }
 
     // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category); // 브랜드 상태 업데이트
+        setSelectedButton(category);  // 선택된 버튼 상태 업데이트
+        fetchItems();  // 브랜드 선택 시 아이템 다시 불러오기
     };
 
+    const getButtonClass = (button) => {
+        return `button ${button} ${selectedButton === button ? 'selected' : ''}`;
+    };
 
+    useEffect(() => {
+        fetchItems();  // 초기 데이터 불러오기 또는 브랜드 변경시 재호출
+    }, [brand]);
+
+    const fetchItems = () => {
+        if (brand) { // 브랜드 값이 있을 때만 실행
+            fetch(
+                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
+                method: "GET",
+                headers: {
+                    "X-Naver-Client-Id": clientId,
+                    "X-Naver-Client-Secret": clientSecret,
+                },
+            })
+                .then((response) => response.json())
+                .then((json) => {
+                    setList(json.items);
+                    setFilteredItems(json.items); // 초기 로딩 시 필터링된 리스트도 업데이트
+                });
+        }
+    };
     // 각 버튼에 대한 텍스트 배열
     const buttons = [
         ['남성', '여성'],
         ['아레나', '나이키', '르망고', '배럴', '후그', '센티', '키치피치', '스웨이브', '비키니밴더', '엘르', '토네이도', '미즈노', '발리비키', '티막', '나인에프엑스', '아디다스', '리복'
-            , '스피도', 'UNKNOWN', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '르망고', '아날도바시니', '쿠기'
+            , '스피도', 'UNKNOWN', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '아날도바시니', '쿠기'
             , '제인코트', 'GANNI', 'H&M', '스키즈', 'TOTEME', '데이즈데이즈', '닉스원', '필로드', '헤링본', '돌핀', '티에스나인', '에르메스', '오스카', '알라이아 컷아웃', '샤넬', '구찌'],
         ['빨강', '파랑', '초록', '노랑', '주황', '보라', '아이보리', '민트', '핑크', '화이트', '블랙'],
     ];
@@ -42,7 +72,7 @@ function Category() {
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
                             {buttons[0].map((text) => (
-                                <button className="button" onClick={() => handleCategoryClick(text)}>{text}</button>
+                                <button className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
                             ))}
                         </div>
                     </Accordion.Body>
@@ -54,7 +84,7 @@ function Category() {
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
                             {buttons[1].map((text) => (
-                                <button className="button" onClick={() => handleCategoryClick(text)}>{text}</button>
+                                <button className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
                             ))}
                         </div>
                     </Accordion.Body>
@@ -85,7 +115,7 @@ function Category() {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Get brand={brand} list={list} setList={setList} />
+                <Get brand={brand} list={list} setList={setList} filteredItems={filteredItems} />
             </Accordion>
         </>
 
