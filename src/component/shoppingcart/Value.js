@@ -98,7 +98,7 @@ function ValueReturn(props) {
                     />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * quantityCoutn)}원</span></div>
                 <div>
                     <button onClick={minusButton}>-</button>
                     <input type='text' value={quantityCoutn} style={{ width: '20px', textAlign: 'center' }} readOnly />
