@@ -8,21 +8,21 @@ function Welcome() {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
-        <Carousel controls={true} className={isMobile ? 'mobile-carousel' : ''}>
-            {[...Array(3)].map((_, index) => (
-                <Carousel.Item key={index}>
-                    <div className="d-flex justify-content-center align-items-center">
-                        <div className="m-5">
-                            <h1>추천 상품</h1>
-                            <GetPopularItem isMobile={isMobile} />
+        <div>
+            <h1 style={{textAlign:'center'}}>추천 상품</h1>
+            <Carousel controls={true}>
+                {[...Array(3)].map((_, index) => (
+                    <Carousel.Item key={index}>
+                        <div className="d-flex justify-content-center align-items-center">
+                            <div className="m-5">
+                                <GetPopularItem isMobile={isMobile} />
+                            </div>
                         </div>
-                    </div>
-                </Carousel.Item>
-            ))}
-        </Carousel>
+                    </Carousel.Item>
+                ))}
+            </Carousel>
+        </div>
     );
 }
-
-
 
 export default Welcome;
