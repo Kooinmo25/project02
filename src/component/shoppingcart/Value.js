@@ -3,7 +3,7 @@ import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
-// import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 import { useLayoutEffect } from 'react';
 
@@ -19,7 +19,7 @@ function addCommas(num) {
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
     
-    const [quantityCoutn, setquantityCount] = useState(1);
+    const [quantityCount, setquantityCount] = useState(1);
     const [isDeleted, setIsDeleted] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const { totalPrice, setTotalPrice } = useContext(CartContext);
@@ -41,17 +41,17 @@ function ValueReturn(props) {
     }, [ setTotalPrice ]);
 
     function plusButton() {
-        setquantityCount(quantityCoutn + 1);
+        setquantityCount(quantityCount + 1);
         if (totalPrice === 0) {
-            setTotalPrice(totalPrice + (quantityCoutn * props.price))
+            setTotalPrice(totalPrice + (quantityCount * props.price))
         } else {
-            setTotalPrice(totalPrice + (props.price * 1))
+            setTotalPrice(totalPrice + ( props.price * 1))
         }
     }
 
     function minusButton() {
-        if (quantityCoutn > 1) {
-            setquantityCount(quantityCoutn - 1);
+        if (quantityCount > 1) {
+            setquantityCount(quantityCount - 1);
             setTotalPrice(totalPrice - props.price); // 
         }
     }
@@ -66,6 +66,7 @@ function ValueReturn(props) {
     if (isDeleted) {
         return null;
     }
+
 
     return (
         <div className='product-item'>
@@ -98,14 +99,14 @@ function ValueReturn(props) {
                     />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * quantityCoutn)}원</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * quantityCount)}원</span></div>
                 <div>
                     <button onClick={minusButton}>-</button>
-                    <input type='text' value={quantityCoutn} style={{ width: '20px', textAlign: 'center' }} readOnly />
+                    <input type='text' value={quantityCount} style={{ width: '20px', textAlign: 'center' }} readOnly />
                     <button onClick={plusButton}>+</button>
                     <button onClick={reset}>reset</button>
-                    <CloseButton onClick={delCartList} />
                 </div>
+                <CloseButton onClick={delCartList} />
             </Stack>
         </div>
     );
