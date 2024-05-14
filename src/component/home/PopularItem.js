@@ -35,7 +35,6 @@ function GetPopularItem() {
         fetchData();
     }, []);
 
-
     return (
         <Row xs={1} md={2} className='g-4'>
             {products.map((item, index) => (
@@ -52,6 +51,5 @@ function GetPopularItem() {
         </Row>
     );
 }
-
 
 export default GetPopularItem;

@@ -79,7 +79,6 @@ function PopItemCard(props) {
                 </Card.Body>
                 <ProductDetail props={props} />
             </Card>
-
             
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
