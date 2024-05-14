@@ -112,6 +112,10 @@ function Category() {
                             <button className="button" onClick={() => filterByPriceRange(40000, 80000)}>40,000원 ~ 80,000원</button>
                             <button className="button" onClick={() => filterByPriceRange(80000, 120000)}>80,000원 ~ 120,000원</button>
                             <button className="button" onClick={() => filterByPriceRange(120000, 180000)}>120,000원 ~ 180,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(180000, 360000)}>180,000원 ~ 360,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(360000, 720000)}>360,000원 ~ 720,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(720000, 1440000)}>720,000원 ~ 1,440,000원</button>
+                            <button className="button" onClick={() => filterByPriceRange(1440000, 2880000)}>1,440,000원 ~ 2,880,000원</button>
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
