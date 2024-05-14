@@ -4,7 +4,7 @@ import Accordion from 'react-bootstrap/Accordion';
 function Explain() {
     return (
         <Accordion defaultActiveKey="0">
-            <Accordion.Item eventKey="0">
+            <Accordion.Item eventKey="1">
                 <Accordion.Header>이용안내</Accordion.Header>
                 <Accordion.Body>
                     <h3>장바구니 이용안내</h3><br/>
