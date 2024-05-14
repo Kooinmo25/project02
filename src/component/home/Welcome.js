@@ -4,7 +4,7 @@ import "./Welcome.css";
 import GetPopularItem from './PopularItem';
 import { useMediaQuery } from 'react-responsive';
 
-function Welcome() {
+function Welcome({list, setList}) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (
@@ -15,7 +15,7 @@ function Welcome() {
                     <Carousel.Item key={index}>
                         <div className="d-flex justify-content-center align-items-center">
                             <div className="m-5">
-                                <GetPopularItem isMobile={isMobile} />
+                                <GetPopularItem isMobile={isMobile} list={list} setList={setList} />
                             </div>
                         </div>
                     </Carousel.Item>
