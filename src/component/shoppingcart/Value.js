@@ -36,7 +36,7 @@ function ValueReturn(props) {
         let localAddPrice = prices.reduce((a, b) => a + b, 0);
         console.log('localPrice', localAddPrice)
         setTotalPrice(localAddPrice);
-    }, [ setTotalPrice ]);
+    }, [ setTotalPrice, delCartList ]);
 
     function plusButton() {
         setCount(count + 1);
