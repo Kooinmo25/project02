@@ -14,9 +14,6 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
 
 
     useEffect(() => {
-        
-
-        
         fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=${priceSort}&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
