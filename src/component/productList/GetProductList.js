@@ -26,12 +26,11 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-            console.log(list)
+            console.log(pageNum)
 
     }, [sortNum, pageNum, priceSort])
 
     return (
-        
         <Row xs={1} md={2} lg={sortNum} className="g-4">
             {list.map((item) => (
             <Col key={item.productId}>
@@ -46,6 +45,7 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
             ))}
         </Row>
     )
+
 }
 
 export default GetProductList
