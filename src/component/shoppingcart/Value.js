@@ -5,6 +5,7 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
 import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
+import { useLayoutEffect } from 'react';
 
 // b삭제
 function removebtag(text) {
@@ -17,7 +18,8 @@ function addCommas(num) {
 
 function ValueReturn(props) {
     const titledel = removebtag(props.title);
-    const [count, setCount] = useState(1);
+    
+    const [quantityCoutn, setquantityCount] = useState(1);
     const [isDeleted, setIsDeleted] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const { totalPrice, setTotalPrice } = useContext(CartContext);
@@ -25,10 +27,10 @@ function ValueReturn(props) {
 
     function reset() {
         setTotalPrice(0)
-        setCount(0)
+        setquantityCount(0)
     }
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         let getItemPrice = localStorage.getItem('cartList')
         let cartList = JSON.parse(getItemPrice);
         let prices = cartList.map(item => parseFloat(item.price.replace(/,/g, '')));
@@ -36,20 +38,20 @@ function ValueReturn(props) {
         let localAddPrice = prices.reduce((a, b) => a + b, 0);
         console.log('localPrice', localAddPrice)
         setTotalPrice(localAddPrice);
-    }, [ setTotalPrice, delCartList ]);
+    }, [ setTotalPrice ]);
 
     function plusButton() {
-        setCount(count + 1);
+        setquantityCount(quantityCoutn + 1);
         if (totalPrice === 0) {
-            setTotalPrice(totalPrice + (count * props.price))
+            setTotalPrice(totalPrice + (quantityCoutn * props.price))
         } else {
             setTotalPrice(totalPrice + ( props.price * 1))
         }
     }
 
     function minusButton() {
-        if (count > 1) {
-            setCount(count - 1);
+        if (quantityCoutn > 1) {
+            setquantityCount(quantityCoutn - 1);
             setTotalPrice(totalPrice - props.price); // 
         }
     }
@@ -96,10 +98,10 @@ function ValueReturn(props) {
                     />
                 </div>
                 <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
+                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * quantityCoutn)}원</span></div>
                 <div>
                     <button onClick={minusButton}>-</button>
-                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
+                    <input type='text' value={quantityCoutn} style={{ width: '20px', textAlign: 'center' }} readOnly />
                     <button onClick={plusButton}>+</button>
                     <button onClick={reset}>reset</button>
                 </div>

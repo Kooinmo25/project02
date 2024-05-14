@@ -12,12 +12,20 @@
     align-items: center;
 }
 
+.sort-button {
+    margin-right: 10px;
+}
 
+.sort-list {
+    margin-right: 20px;
+}
 
 
 .button-group { 
     display: flex;
     justify-content: flex-end;
+    margin-bottom: 30px;
+    margin-right: 48px;
 }
 
 .page-nation {
