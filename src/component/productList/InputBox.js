@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 
-function InputBox({ setList }) {
+function InputBox({ list, setList }) {
     const [search, setSearch] = useState('');
     const [allList, setAllList] = useState([])
 

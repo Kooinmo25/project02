@@ -3,7 +3,6 @@ import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
-import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 import { useLayoutEffect } from 'react';
 
@@ -24,11 +23,6 @@ function ValueReturn(props) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const { totalPrice, setTotalPrice } = useContext(CartContext);
 
-
-    function reset() {
-        setTotalPrice(0)
-        setquantityCount(0)
-    }
 
     useLayoutEffect(() => {
         let getItemPrice = localStorage.getItem('cartList')
@@ -66,7 +60,6 @@ function ValueReturn(props) {
     if (isDeleted) {
         return null;
     }
-
 
     return (
         <div className="product-item" style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px' }}>
