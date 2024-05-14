@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 
 
-function GetProductList({ sortNum, pageNum, list, setList }) {
+function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
 
 
 
@@ -17,7 +17,7 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
         
 
         
-        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=sim&display=20&start=${pageNum}`, {
+        fetch(`/v1/search/shop?query=수영복&filter=used:false&sort=${priceSort}&display=20&start=${pageNum}`, {
             method: "GET",
             headers: {
                 "X-Naver-Client-Id": clientId,
@@ -28,19 +28,19 @@ function GetProductList({ sortNum, pageNum, list, setList }) {
             .then(json => setList(json.items))
             console.log(list)
 
-    }, [sortNum, pageNum])
+    }, [sortNum, pageNum, priceSort])
 
     return (
         
         <Row xs={1} md={2} lg={sortNum} className="g-4">
-            {list.map((item, index) => (
-            <Col>
+            {list.map((item) => (
+            <Col key={item.productId}>
                 <ProductList
-                    key={index}
                     title={item.title}
                     image={item.image}
                     price={item.lprice}
                     id={item.productId}
+                    brand={item.brand}
                 />
             </Col>
             ))}

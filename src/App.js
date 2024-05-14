@@ -1,10 +1,11 @@
 /*eslint-disable*/
 
+import './App.css'
 import Layout from "./component/common/Layout";
 
 function App() {
   return (
-    <div>
+    <div className="myBackGroudImages">
       <Layout />
     </div>
   );

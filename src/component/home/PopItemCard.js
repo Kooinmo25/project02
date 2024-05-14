@@ -61,7 +61,7 @@ function PopItemCard(props) {
                                 <Button
                                     className='mx-1'
                                     variant="secondary"
-                                    size={isMobile ? 'sm' : 'md'}
+                                    size={isMobile ? 'xs' : 'sm'}
                                     style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
                                 >구매하기</Button>
 
@@ -75,7 +75,7 @@ function PopItemCard(props) {
                                             handleAddToCart();
                                         }}
                                         variant='success'
-                                        size={isMobile ? 'sm' : 'md'}
+                                        size={isMobile ? 'xs' : 'sm'}
                                         style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
                                     />
                                 </Link>

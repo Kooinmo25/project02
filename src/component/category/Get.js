@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand }) {
-    const [list, setlist] = useState([]);
+function Get({ brand, list, setList }) {
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
@@ -18,22 +17,28 @@ function Get({ brand }) {
                 },
             })
                 .then((response) => response.json())
-                .then((json) => setlist(json.items));
+                .then((json) => setList(json.items));
         }
     }, [brand]); // brand 값이 변경될 때마다 실행
 
+
+
     return (
-        <Row xs={1} md={2} lg={4} className="g-4">
-            {list.map((item, index) => (
-                <Col key={index}>
-                    <ProductList
-                        title={item.title}
-                        image={item.image}
-                        price={item.lprice}
-                    />
-                </Col>
-            ))}
-        </Row>
+        <>
+            {list && list.length > 0 && (
+                <Row xs={1} md={2} lg={4} className="g-4">
+                    {list.map((item, index) => (
+                        <Col key={index}>
+                            <ProductList
+                                title={item.title}
+                                image={item.image}
+                                price={item.lprice}
+                            />
+                        </Col>
+                    ))}
+                </Row>
+            )}
+        </>
     )
 }
 
