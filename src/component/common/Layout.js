@@ -27,13 +27,13 @@ function Layout() {
                             <Route index element={<Welcome list={list} setList={setList} />} />
                             <Route
                                 path="/productlist"
-                                element={<ProductCompoReturn list={list} setList={setList} />}
-                            />
-                            <Route path="/category" element={<Filter list={list} setList={setList} />} />
+                                element={<ProductCompoReturn list={list} setList={setList} />}/>
+                            <Route
+                                path="/category"
+                                element={<Filter list={list} setList={setList} />}/>
                             <Route
                                 path="/shoppingcart"
-                                element={<Cartreturn list={list} setList={setList} />}
-                            />
+                                element={<Cartreturn list={list} setList={setList} />}/>
                         </Routes>
                     </BrowserRouter>
                 </div>
