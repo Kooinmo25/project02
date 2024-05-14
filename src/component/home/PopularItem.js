@@ -27,7 +27,7 @@ function GetPopularItem() {
                     "X-Naver-Client-Secret": ClientPassword,
                 },
             });
-            
+
             const json = await response.json();
             const shuffledItems = shuffleArray(json.items).slice(0, 2);
             setProducts(shuffledItems);
@@ -43,7 +43,10 @@ function GetPopularItem() {
                     <PopItemCard
                         title={item.title}
                         image={item.image}
-                        price={item.lprice} />
+                        price={item.lprice}
+                        id={item.productId}
+                        brand={item.brand}
+                    />
                 </Col>
             ))}
         </Row>

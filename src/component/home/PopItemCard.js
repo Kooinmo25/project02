@@ -15,17 +15,18 @@ function addCommas(num) {
 }
 
 function PopItemCard(props) {
-    const isMobile = useMediaQuery({ maxWidth: 768 });
-    const titleDel = removebtag(props.title);
     const commas = addCommas(props.price);
+    const titleDel = removebtag(props.title);
     const { cartList, setCartList } = useContext(CartContext);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
     const [showModal, setShowModal] = useState(false);
 
     const handleAddToCart = () => {
-        const item = { title: props.title, image: props.image, price: props.price };
-        const updatedCartList = [...cartList, item];
-        setCartList(updatedCartList);
-        localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
+        const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
+        cartList.push(item);
+        localStorage.setItem('cartList', JSON.stringify(cartList));
+        setCartList(cartList);
         setShowModal(false);
         window.location.href = "/shoppingcart"; // 장바구니 페이지로 이동
     };
@@ -78,6 +79,8 @@ function PopItemCard(props) {
                 </Card.Body>
                 <ProductDetail props={props} />
             </Card>
+
+            
             <Modal show={showModal} onHide={() => setShowModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>장바구니에 상품을 추가하시겠습니까?</Modal.Title>
