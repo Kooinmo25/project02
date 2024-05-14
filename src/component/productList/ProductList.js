@@ -25,7 +25,7 @@ function ProductList(props) {
     const titleDel = removebtag(props.title)
     const { cartList, setCartList } = useContext(CartContext);
 
-    const handleAddToCart = () => {git 
+    const handleAddToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         cartList.push(item);
@@ -54,16 +54,15 @@ function ProductList(props) {
                         <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
                             {commas} 원
                         </Card.Text>
-                        <Card.Text>
-                            <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                                <div style={{ marginRight: '10px', display: 'inline-block'}}>
-                                    <ProductDetail props={props} />
-                                </div>
-                                <div style={{ marginLeft: '10px', display: 'inline-block' }}>
-                                    <Button variant="info" size='m' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
-                                </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                            <div style={{ marginRight: '10px', display: 'inline-block' }}>
+                                <ProductDetail props={props} />
                             </div>
-                        </Card.Text>
+                            <div style={{ marginLeft: '10px', display: 'inline-block' }}>
+                                <Button variant="info" size='m' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
+                            </div>
+                        </div>
+
                     </Card.Body>
                 </Card>
             </Col>
