@@ -45,21 +45,23 @@ function ProductList(props) {
 
     return (
 
-        <Col className='productList' style={{ width: '80%', height: "100%" }}>
-            <Card>
-                <Card.Img className='card-img' variant="top" src={props.image} />
-                <Card.Body>
-                    <Card.Title className="text-truncate">{titleDel}</Card.Title>
-                    <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
-                        {commas} 원
-                    </Card.Text>
-                    <Card.Text>
-                        <ProductDetail props={props} />
-                        <Button variant="info" size='sm' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-        </Col>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', border: '4px solid white', borderRadius: '10px' }}>
+            <Col className='productList' style={{ width: '80%', height: "100%" }}>
+                <Card>
+                    <Card.Img className='card-img' variant="top" src={props.image} />
+                    <Card.Body>
+                        <Card.Title className="text-truncate">{titleDel}</Card.Title>
+                        <Card.Text style={{ fontWeight: "bold", fontSize: "20px" }}>
+                            {commas} 원
+                        </Card.Text>
+                        <Card.Text>
+                            <ProductDetail props={props} />
+                            <Button variant="info" size='sm' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Col>
+        </div>
     );
 }
 
