@@ -54,6 +54,8 @@ function ValueReturn(props) {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
         localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        const deletedItemPrice = props.price * quantityCount;
+        setTotalPrice(prevTotalPrice => prevTotalPrice - deletedItemPrice);
         setIsDeleted(true);
     }
 
