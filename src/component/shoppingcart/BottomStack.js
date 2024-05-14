@@ -13,9 +13,9 @@ function BottomStack() {
 
     
     useEffect(() => {
-        console.log('totalPrice', totalPrice)
-        console.log('commas', comma)
-        console.log('commas', typeof comma)
+        // console.log('totalPrice', totalPrice)
+        // console.log('commas', comma)
+        // console.log('commas', typeof comma)
     },[totalPrice, setTotalPrice])
 
     return (
