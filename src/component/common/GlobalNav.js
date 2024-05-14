@@ -36,9 +36,12 @@ function GlobalNav() {
                 <Nav.Link href="/">홈</Nav.Link>
                 <Nav.Link href="productlist">상품</Nav.Link>
                 <Nav.Link href="category">카테고리</Nav.Link>
-                <Nav.Link href="shoppingcart">장바구니<div className="cart-item-count" style={{ display: 'inline-block', width: '23px', height: '23px', textAlign: 'center', backgroundColor: 'red', borderRadius: '15px' }}>
-                  <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>{cartItemCount}</span>
-                </div>
+                <Nav.Link href="shoppingcart">장바구니
+                  <div
+                    className="cart-item-count"
+                    style={{ display: 'inline-block', width: '23px', height: '23px', textAlign: 'center', backgroundColor: 'red', borderRadius: '15px' }}>
+                    <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>{cartItemCount}</span>
+                  </div>
                 </Nav.Link>
               </Nav>
             </Offcanvas.Body>
