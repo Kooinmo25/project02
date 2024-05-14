@@ -11,6 +11,7 @@ function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
 
+// ,추가
 function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -23,11 +24,6 @@ function ValueReturn(props) {
     const { totalPrice, setTotalPrice } = useContext(CartContext);
 
 
-    function reset() {
-        setTotalPrice(0)
-        setCount(0)
-    }
-
     useEffect(() => {
         let getItemPrice = localStorage.getItem('cartList')
         let cartList = JSON.parse(getItemPrice);
@@ -36,8 +32,9 @@ function ValueReturn(props) {
         let localAddPrice = prices.reduce((a, b) => a + b, 0);
         console.log('localPrice', localAddPrice)
         setTotalPrice(localAddPrice);
-    }, [ setTotalPrice, delCartList ]);
+    }, [setTotalPrice, delCartList]);
 
+    // 플러스 버튼
     function plusButton() {
         setCount(count + 1);
         if (totalPrice === 0) {
@@ -47,6 +44,7 @@ function ValueReturn(props) {
         }
     }
 
+    // 마이너스 버튼
     function minusButton() {
         if (count > 1) {
             setCount(count - 1);
@@ -54,6 +52,7 @@ function ValueReturn(props) {
         }
     }
 
+    // x 버튼
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
@@ -66,45 +65,29 @@ function ValueReturn(props) {
     }
 
     return (
-        <div className='product-item'>
-            <Stack direction={isMobile ? "vertical" : "horizontal"} gap={3}>
-                <div>
-                    {/* <Form>
-                        {['checkbox'].map((type) => (
-                            <div key={`inline-${type}`} className="mb-3">
-                                <Form.Check
-                                    inline
-                                    label="1"
-                                    name="group1"
-                                    type={type}
-                                    id={`inline-${type}-1`}
-                                    checked={props.check}
-                                    onChange={() => props.setCheck(!props.check)}
-                                />
-                            </div>
-                        ))}
-                    </Form> */}
+        <div className="product-item" style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px' }}>
+            <div className="product-image" style={{ marginRight: '20px', flexShrink: 0 }}>
+                <img
+                    src={props.image}
+                    alt="Product"
+                    style={{
+                        width: isMobile ? "7rem" : "8rem",
+                        height: isMobile ? "7rem" : "8rem",
+                        borderRadius: "10px",
+                        objectFit: "cover"
+                    }}
+                />
+            </div>
+            <div className="product-details" style={{ flexGrow: 1 }}>
+                <div className="product-title" style={{ fontSize: '20px', marginBottom: '10px', fontWeight: 'bold' }}>{titledel}</div>
+                <div className="product-price" style={{ marginBottom: '10px', fontSize: '18px', color: '#007bff' }}>{addCommas(props.price * count)}원</div>
+                <div className="product-quantity" style={{ marginBottom: '10px' }}>
+                    <button onClick={minusButton} style={{ padding: '5px 10px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '5px' }}>-</button>
+                    <input type='text' value={count} style={{ width: '40px', textAlign: 'center', fontSize: '16px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px', margin: '0 5px' }} readOnly />
+                    <button onClick={plusButton} style={{ padding: '5px 10px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '5px' }}>+</button>
                 </div>
-                <div className="cartBox">
-                    <img
-                        src={props.image}
-                        alt="Product"
-                        style={{
-                            width: isMobile ? "7rem" : "8rem",
-                            height: isMobile ? "7rem" : "8rem"
-                        }}
-                    />
-                </div>
-                <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
-                <div>
-                    <button onClick={minusButton}>-</button>
-                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
-                    <button onClick={plusButton}>+</button>
-                    <button onClick={reset}>reset</button>
-                </div>
-                <CloseButton onClick={delCartList} />
-            </Stack>
+            </div>
+            <CloseButton onClick={delCartList} style={{ marginLeft: '20px', cursor: 'pointer' }} />
         </div>
     );
 }
