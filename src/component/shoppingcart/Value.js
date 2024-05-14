@@ -48,7 +48,7 @@ function ValueReturn(props) {
                     src={props.image} 
                     alt="Product"
                     style={{ width : isMobile ? "12rem" : "32rem",
-                             height: isMobile ? "12rem" : "32rem"}}></img>
+                    height: isMobile ? "12rem" : "32rem"}}></img>
                 </div>
                 <CloseButton onClick={delCartList} />
             </Stack>
