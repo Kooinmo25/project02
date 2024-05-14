@@ -38,18 +38,18 @@ function InputBox({ list, setList }) {
     };
 
     return (
-        <Form inline='true' onSubmit={handleSubmit}>
+        <Form inline="true" onSubmit={handleSubmit}>
             <Row>
-                <Col xs="auto">
+                <Col xs="auto" style={{ paddingRight: 0 }}>
                     <Form.Control
                         type="text"
                         placeholder="검색어를 입력하세요"
-                        className="mr-sm-2"
+                        style={{ marginRight: 0 }}
                         value={searchTerm}
                         onChange={handleChange}
                     />
                 </Col>
-                <Col xs="auto">
+                <Col xs="auto" style={{ paddingLeft: 0 }}>
                     <Button type="submit">확인</Button>
                 </Col>
             </Row>

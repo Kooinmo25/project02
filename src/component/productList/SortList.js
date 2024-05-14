@@ -27,20 +27,20 @@ function SortList({ pageNum, priceSort, list, setList }) {
 
     }
 
-    function priceUp({ list, setList }) {
-        const upList = list.map(item => item.lprice);
-        upList.sort((a, b) => a - b);
-        const sortedList = upList.map(price => list.find(item => item.lprice === price));
+    function priceUp() {
+        const sortedList = [...list].sort((a, b) => {
+            return a.lprice - b.lprice || a.title.localeCompare(b.title);
+        });
         setList(sortedList);
-        setSortName('가격 낮은순')
+        setSortName('가격 낮은순');
     }
-
-    function priceDown({ list, setList }) {
-        const upList = list.map(item => item.lprice);
-        upList.sort((a, b) => b - a);
-        const sortedList = upList.map(price => list.find(item => item.lprice === price));
+    
+    function priceDown() {
+        const sortedList = [...list].sort((a, b) => {
+            return b.lprice - a.lprice || b.title.localeCompare(a.title);
+        });
         setList(sortedList);
-        setSortName('가격 높은순')
+        setSortName('가격 높은순');
     }
 
 
