@@ -29,8 +29,14 @@ function ValueReturn(props) {
     }
 
     useEffect(() => {
-        setTotalPrice(props.price * count);
-    }, [count, props.price, setTotalPrice]);
+        let getItemPrice = localStorage.getItem('cartList')
+        let cartList = JSON.parse(getItemPrice);
+        let prices = cartList.map(item => parseFloat(item.price.replace(/,/g, '')));
+        console.log('prices', prices)
+        let localAddPrice = prices.reduce((a, b) => a + b, 0);
+        console.log('localPrice', localAddPrice)
+        setTotalPrice(localAddPrice);
+    }, [ setTotalPrice ]);
 
     function plusButton() {
         setCount(count + 1);
