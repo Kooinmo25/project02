@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 
-function InputBox({ list, setList }) {
-    const [searchTerm, setSearchTerm] = useState('');
+function InputBox({ setList }) {
+    const [search, setSearch] = useState('');
     const [allList, setAllList] = useState([])
 
     const clientId = "HV5h7QtkYL9s3BHx903z";
@@ -22,19 +22,19 @@ function InputBox({ list, setList }) {
     }, [])
 
     const handleChange = (event) => {
-        setSearchTerm(event.target.value);
+        setSearch(event.target.value);
     };
 
-    const filterProducts = () => {
+    const productsFilter = () => {
         const filteredProducts = allList.filter(product => 
-            product.title.toLowerCase().includes(searchTerm.toLowerCase())
+            product.title.toLowerCase().includes(search.toLowerCase())
         );
         setList(filteredProducts);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        filterProducts();
+        productsFilter();
     };
 
     return (
@@ -45,7 +45,7 @@ function InputBox({ list, setList }) {
                         type="text"
                         placeholder="검색어를 입력하세요"
                         style={{ marginRight: 0 }}
-                        value={searchTerm}
+                        value={search}
                         onChange={handleChange}
                     />
                 </Col>

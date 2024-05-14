@@ -26,14 +26,7 @@ function ProductCompoReturn({ list, setList }) {
                     </div>
 
                     <div className="sort-list">
-                        <SortList
-                            pageNum={pageNum}
-                            priceSort={priceSort}
-                            setSortNum={setSortNum}
-                            setPriceSort={setPriceSort}
-                            list={list}
-                            setList={setList}
-                        />
+                        <SortList list={list} setList={setList} />
                     </div>
                     <InputBox list={list} setList={setList} />
                 </ButtonGroup>
