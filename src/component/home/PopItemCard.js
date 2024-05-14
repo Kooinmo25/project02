@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { Button } from 'react-bootstrap';
+import React, { useContext, useState, useEffect } from 'react';
+import { Button, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import { useMediaQuery } from 'react-responsive';
 import CartContext from '../productList/CartContext';
-import { Link } from 'react-router-dom';
+import ProductDetail from '../productList/ProductDetail';
 
 function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
@@ -17,14 +17,17 @@ function addCommas(num) {
 function PopItemCard(props) {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const titleDel = removebtag(props.title);
-    const commas = addCommas(props.price)
+    const commas = addCommas(props.price);
     const { cartList, setCartList } = useContext(CartContext);
+    const [showModal, setShowModal] = useState(false);
 
     const handleAddToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price };
         const updatedCartList = [...cartList, item];
         setCartList(updatedCartList);
         localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        setShowModal(false);
+        window.location.href = "/shoppingcart"; // 장바구니 페이지로 이동
     };
 
     useEffect(() => {
@@ -57,33 +60,37 @@ function PopItemCard(props) {
                         }}>{commas} 원</span>
 
                         <div style={{ marginLeft: isMobile ? 0 : 'auto', marginTop: isMobile ? '10px' : 0 }}>
-                            
-                                <Button
-                                    className='mx-1'
-                                    variant="secondary"
-                                    size={isMobile ? 'xs' : 'sm'}
-                                    style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
-                                >구매하기</Button>
+                            <Button
+                                className='mx-1'
+                                variant="secondary"
+                                size={isMobile ? 'xs' : 'sm'}
+                                style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
+                            >구매하기</Button>
 
-                                <Link to="/shoppingcart">
-                                    <Button
-                                        as="input"
-                                        type="button"
-                                        value="장바구니 담기"
-                                        onClick={() => {
-                                            alert("해당 상품을 장바구니에 담았습니다.");
-                                            handleAddToCart();
-                                        }}
-                                        variant='success'
-                                        size={isMobile ? 'xs' : 'sm'}
-                                        style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
-                                    />
-                                </Link>
+                            <Button
+                                variant='success'
+                                size={isMobile ? 'xs' : 'sm'}
+                                style={{ fontSize: isMobile ? "0.8rem" : "1rem" }}
+                                onClick={() => setShowModal(true)}
+                            >장바구니 담기</Button>
                         </div>
                     </div>
                 </Card.Body>
-                <Button variant='primary'>상세정보</Button>
+                <ProductDetail props={props} />
             </Card>
+            <Modal show={showModal} onHide={() => setShowModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>장바구니에 상품을 추가하시겠습니까?</Modal.Title>
+                </Modal.Header>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleAddToCart}>
+                        네
+                    </Button>
+                    <Button variant="secondary" onClick={() => setShowModal(false)}>
+                        취소
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Col>
     );
 }

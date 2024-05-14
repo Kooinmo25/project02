@@ -3,7 +3,7 @@ import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
-import Form from 'react-bootstrap/Form';
+// import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 
 // b삭제
@@ -37,7 +37,7 @@ function ValueReturn(props) {
         if (totalPrice === 0) {
             setTotalPrice(totalPrice + (count * props.price))
         } else {
-            setTotalPrice(totalPrice + ( props.price * 1))
+            setTotalPrice(totalPrice + (props.price * 1))
         }
     }
 
@@ -62,42 +62,30 @@ function ValueReturn(props) {
     return (
         <div className='product-item'>
             <Stack direction={isMobile ? "vertical" : "horizontal"} gap={3}>
-                <div>
-                    {/* <Form>
-                        {['checkbox'].map((type) => (
-                            <div key={`inline-${type}`} className="mb-3">
-                                <Form.Check
-                                    inline
-                                    label="1"
-                                    name="group1"
-                                    type={type}
-                                    id={`inline-${type}-1`}
-                                    checked={props.check}
-                                    onChange={() => props.setCheck(!props.check)}
-                                />
-                            </div>
-                        ))}
-                    </Form> */}
+
+                <div className='d-flex align-items-center'>
+                    <div className="cartBox">
+                        <img
+                            src={props.image}
+                            alt="Product"
+                            style={{
+                                width: isMobile ? "7rem" : "8rem",
+                                height: isMobile ? "7rem" : "8rem"
+                            }}
+                        />
+                    </div>
+                    <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span>
+                    </div>
                 </div>
-                <div className="cartBox">
-                    <img
-                        src={props.image}
-                        alt="Product"
-                        style={{
-                            width: isMobile ? "7rem" : "8rem",
-                            height: isMobile ? "7rem" : "8rem"
-                        }}
-                    />
-                </div>
-                <div className="title"><span style={{ fontSize: '20px' }}>{titledel}</span></div>
-                <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
-                <div>
+
+                <div className={isMobile ? "d-flex align-items-center text-center" : "d-flex align-items-center"}>
+                    <div className="price"><span style={{ fontSize: '20px' }}>{addCommas(props.price * count)}원</span></div>
                     <button onClick={minusButton}>-</button>
-                    <input type='text' value={count} style={{ width: '20px', textAlign: 'center' }} readOnly />
+                    <input type='text' value={count} style={{ width: '30px', textAlign: 'center' }} readOnly />
                     <button onClick={plusButton}>+</button>
                     <button onClick={reset}>reset</button>
+                    <CloseButton onClick={delCartList} />
                 </div>
-                <CloseButton onClick={delCartList} />
             </Stack>
         </div>
     );

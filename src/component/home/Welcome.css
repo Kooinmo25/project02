@@ -4,15 +4,12 @@
   border-radius: 20%;
 }
 
-.carousel-control-prev-icon{
-    margin-right: 100px;
+.carousel-control-prev-icon {
+  margin-right: 100px;
 }
 
 
 .carousel-control-next-icon {
-    margin-left: 100px;
+  margin-left: 100px;
 }
 
-.mobile-carousel h1 {
-  text-align: center;
-}
