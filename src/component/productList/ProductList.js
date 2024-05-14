@@ -25,7 +25,7 @@ function ProductList(props) {
     const titleDel = removebtag(props.title)
     const { cartList, setCartList } = useContext(CartContext);
 
-    const handleAddToCart = () => {
+    const handleAddToCart = () => {git 
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         cartList.push(item);
