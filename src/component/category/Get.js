@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand, list, setList }) {
+function Get({ brand, list, setList, filteredItems = [] }) {
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
@@ -25,9 +25,9 @@ function Get({ brand, list, setList }) {
 
     return (
         <>
-            {list && list.length > 0 && (
+            {filteredItems.length > 0 ? ( // 필터링된 아이템으로 조건 변경
                 <Row xs={1} md={2} lg={4} className="g-4">
-                    {list.map((item, index) => (
+                    {filteredItems.map((item, index) => (
                         <Col key={index}>
                             <ProductList
                                 title={item.title}
@@ -37,7 +37,7 @@ function Get({ brand, list, setList }) {
                         </Col>
                     ))}
                 </Row>
-            )}
+            ) : null}
         </>
     )
 }
