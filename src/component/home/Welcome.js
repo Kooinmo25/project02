@@ -4,7 +4,7 @@ import "./Welcome.css";
 import GetPopularItem from './PopularItem';
 import { useMediaQuery } from 'react-responsive';
 
-function Welcome({ list, setList }) {
+function Welcome() {
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
     return (

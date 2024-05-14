@@ -19,11 +19,22 @@ function ProductCompoReturn({ list, setList }) {
     return (
 
         <div>
-            <ButtonGroup >
-                <SortButton setSortNum={setSortNum} setPriceSort={setPriceSort} />
-                <SortList setPriceSort={setPriceSort} list={list} setList={setList} />
-                <InputBox list={list} setList={setList} />
-            </ButtonGroup>
+            <div className="button-group">
+                <ButtonGroup className="justify-content-end">
+                    <SortButton  setPriceSort={setPriceSort} />
+
+                    <SortList 
+                    pageNum={pageNum} 
+                    priceSort={priceSort} 
+                    setSortNum={setSortNum} 
+                    setPriceSort={setPriceSort} 
+                    list={list} 
+                    setList={setList} 
+                    />
+
+                    <InputBox list={list} setList={setList} />
+                </ButtonGroup>
+            </div>
             <GetProductList
                 list={list}
                 setList={setList}
@@ -31,7 +42,9 @@ function ProductCompoReturn({ list, setList }) {
                 pageNum={pageNum}
                 priceSort={priceSort}
             />
+            <div className="page-nation">
             <PageNation setPageNum={setPageNum} />
+            </div>
         </div>
     );
 }

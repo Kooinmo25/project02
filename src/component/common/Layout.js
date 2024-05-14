@@ -11,7 +11,6 @@ import Cartreturn from '../shoppingcart/Total.js';
 
 
 
-
 function Layout() {
     const [list, setList] = useState([]);
 
