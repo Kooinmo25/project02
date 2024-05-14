@@ -21,7 +21,7 @@ function ProductCompoReturn({ list, setList }) {
         <div>
             <div className="button-group">
                 <ButtonGroup className="justify-content-end">
-                    <SortButton  setPriceSort={setPriceSort} />
+                    <SortButton  setPriceSort={setPriceSort} setSortNum={setSortNum} />
 
                     <SortList 
                     pageNum={pageNum} 
