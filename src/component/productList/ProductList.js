@@ -55,8 +55,14 @@ function ProductList(props) {
                             {commas} 원
                         </Card.Text>
                         <Card.Text>
-                            <ProductDetail props={props} />
-                            <Button variant="info" size='sm' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
+                            <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                                <div style={{ marginRight: '10px', display: 'inline-block'}}>
+                                    <ProductDetail props={props} />
+                                </div>
+                                <div style={{ marginLeft: '10px', display: 'inline-block' }}>
+                                    <Button variant="info" size='m' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
+                                </div>
+                            </div>
                         </Card.Text>
                     </Card.Body>
                 </Card>
