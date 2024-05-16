@@ -6,7 +6,7 @@ import Explain from './Explain';
 
 
 
-// 최종
+// 최상위 컴포넌트
 function Cartreturn() {
 
     const [check, setCheck] = useState(false)

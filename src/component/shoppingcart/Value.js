@@ -11,6 +11,7 @@ function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
 
+// 가격 , 추가
 function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -34,6 +35,7 @@ function ValueReturn(props) {
         setTotalPrice(localAddPrice);
     }, [setTotalPrice]);
 
+    // +버튼
     function plusButton() {
         setquantityCount(quantityCount + 1);
         if (totalPrice === 0) {
@@ -43,6 +45,7 @@ function ValueReturn(props) {
         }
     }
 
+    // -버튼
     function minusButton() {
         if (quantityCount > 1) {
             setquantityCount(quantityCount - 1);
@@ -50,6 +53,7 @@ function ValueReturn(props) {
         }
     }
 
+    // 삭제 버튼
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
@@ -59,6 +63,7 @@ function ValueReturn(props) {
         setIsDeleted(true);
     }
 
+    // 삭제됬으면 화면에 x
     if (isDeleted) {
         return null;
     }
