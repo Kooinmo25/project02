@@ -16,29 +16,25 @@ function addCommas(num) {
 function ProductDetail({ props }) {
     const [lgShow, setLgShow] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const [isMouseOver, setIsMouseOver] = useState(false);
-    const [imageInFrame, setImageInFrame] = useState(false);
+    const [inMouse, setInMouse] = useState(false);
 
     const titleDel = removebtag(props.title);
     const commas = addCommas(props.price);
 
     const handleMouseMove = (e) => {
-        const offsetX = 700; // X 축 방향으로의 거리 조절
-        const offsetY = 300; // Y 축 방향으로의 거리 조절
-        setMousePosition({ x: e.clientX - offsetX, y: e.clientY - offsetY });
-        setImageInFrame(
-            e.clientX >= mousePosition.x - offsetX &&
-            e.clientX <= mousePosition.x + offsetX &&
-            e.clientY >= mousePosition.y - offsetY &&
-            e.clientY <= mousePosition.y + offsetY
-        );
+        const MouselLocation = e.target.getBoundingClientRect(); // 현재 요소에 대한 위치값을 전달해주는 메서드
+        const x = e.clientX - MouselLocation.left; 
+        const y = e.clientY - MouselLocation.top;
+        // console.log('top',rect.top, 'right', rect.right, 'bottom', rect.bottom, 'left', rect.left)
+        setMousePosition({ x, y });
     };
+    
     const handleMouseEnter = () => {
-        setIsMouseOver(true);
+        setInMouse(true);
     };
 
     const handleMouseLeave = () => {
-        setIsMouseOver(false);
+        setInMouse(false);
     };
     return (
         <>
@@ -58,51 +54,54 @@ function ProductDetail({ props }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div
+                <div
+                    style={{
+                        position: 'relative',
+                        width: '100%',
+                        height: '100%',
+                        overflow: 'hidden',
+                    }}
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    <img
+                        src={props.image}
+                        alt={titleDel}
                         style={{
-                            position: 'relative',
-                            width: '100%',
-                            height: '100%',
-                            overflow: 'hidden',
+                            width: '70%',
+                            height: 'auto',
                         }}
-                        onMouseMove={handleMouseMove}
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <img
-                            src={props.image}
-                            alt={titleDel}
+                    />
+                    {inMouse && (
+                        <div
                             style={{
-                                width: '70%',
-                                height: 'auto',
+                                position: 'absolute',
+                                left: `${mousePosition.x}px`,
+                                top: `${mousePosition.y}px`,
+                                width: '300px',
+                                height: '300px',
+                                border: '2px solid white',
+                                borderRadius: '20px',
+                                zIndex: 1000,
+                                overflow: 'hidden',
                             }}
-                        />
-                        {isMouseOver && (
-                            <div
+                        >
+                            <img
+                                src={props.image}
+                                alt={titleDel}
                                 style={{
                                     position: 'absolute',
-                                    left: mousePosition.x,
-                                    top: mousePosition.y,
-                                    width: '300px',
-                                    height: '300px',
-                                    border: '2px solid red',
-                                    zIndex: 1000,
-                                }}>
-                                <img
-                                    src={props.image}
-                                    alt={titleDel}
-                                    style={{
-                                        width: '100%',
-                                        height: 'auto',
-                                        transformOrigin: `50% 50%`,
-                                        transform: isMouseOver ? 'scale(4)' : 'scale(1)',
-                                        transition: 'transform 0.3s',
-                                    }}
-                                />
-                            </div>
-                        )}
-                    </div>
-                </Modal.Body>
+                                    left: `-${mousePosition.x * 2}px`,
+                                    top: `-${mousePosition.y * 2}px`,
+                                    width: '400%',
+                                    height: 'auto',
+                                }}
+                            />
+                        </div>
+                    )}
+                </div>
+            </Modal.Body>
                 <Modal.Header>
                     <span style={{ fontSize: '20px', fontWeight:'bold' }}>
                         브랜드: {props.brand ? props.brand : '자사몰'}
