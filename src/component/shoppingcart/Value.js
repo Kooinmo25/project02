@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-import Stack from 'react-bootstrap/Stack';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
@@ -88,7 +87,7 @@ function ValueReturn(props) {
                 <div className="product-price" style={{ marginBottom: '10px', fontSize: '18px', color: '#007bff' }}>{addCommas(props.price * quantityCount)}원</div>
                 <div className="product-quantity" style={{ marginBottom: '10px' }}>
                     <button onClick={minusButton} style={{ padding: '5px 10px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '5px' }}>-</button>
-                    <input type='text' readOnly value={quantityCount} style={{ width: '40px', textAlign: 'center', fontSize: '16px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px', margin: '0 5px' }} readOnly />
+                    <input type='text' readOnly value={quantityCount} style={{ width: '40px', textAlign: 'center', fontSize: '16px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px', margin: '0 5px' }} />
                     <button onClick={plusButton} style={{ padding: '5px 10px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '5px' }}>+</button>
                 </div>
             </div>

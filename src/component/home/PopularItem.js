@@ -11,7 +11,7 @@ function shuffleArray(array) {
     return array;
 }
 
-function GetPopularItem({list, setList}) {
+function GetPopularItem() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
