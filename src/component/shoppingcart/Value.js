@@ -70,6 +70,7 @@ function ValueReturn(props) {
 
     return (
         <div className="product-item" style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px' }}>
+            <input type="checkbox" style={{ marginRight: '10px' }} />
             <div className="product-image" style={{ marginRight: '20px', flexShrink: 0 }}>
                 <img
                     src={props.image}
