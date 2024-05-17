@@ -2,10 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import CartContext from '../productList/CartContext';
 
+// 가격 , 추가
 function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// 상품 금액 , 배송비 , 결제예정금액
 function BottomStack() {
     const { totalPrice, setTotalPrice } = useContext(CartContext);
     let comma = addCommas(totalPrice)

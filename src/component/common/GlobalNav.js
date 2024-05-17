@@ -8,7 +8,7 @@ import './GlobalNav.css'
 
 function GlobalNav() {
   const expand = 'md';
-  const { cartList, setCartList } = useContext(CartContext);
+  const { cartList } = useContext(CartContext);
   const [cartItemCount, setCartItemCount] = useState(cartList.length);
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 
-function TwoButton(check, setCheck, props) {
+function TwoButton({check, props}) {
     const [showModal, setShowModal] = useState(false);
 
 

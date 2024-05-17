@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import TwoButton from './TwoButton';
 import ShoopingCart from './ShoopingCart';
 import BottomStack from './BottomStack';
 import Explain from './Explain';
+import CartContext from '../productList/CartContext';
 
 
 
-// 최종
+// 최상위 컴포넌트
 function Cartreturn() {
 
     const [check, setCheck] = useState(false)
-    const [totalPrice, setTotalPrice] = useState(0); // 상품 총 가격
+    const { totalPrice, setTotalPrice } = useContext(CartContext);
 
     return (
         <div>

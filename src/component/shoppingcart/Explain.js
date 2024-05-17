@@ -3,6 +3,7 @@ import Accordion from 'react-bootstrap/Accordion';
 
 function Explain() {
     return (
+        // 이용안내
         <Accordion defaultActiveKey="0">
             <Accordion.Item eventKey="1">
                 <Accordion.Header>이용안내</Accordion.Header>

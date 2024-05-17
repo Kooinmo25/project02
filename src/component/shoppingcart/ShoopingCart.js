@@ -6,7 +6,7 @@ function ShoppingCart({ check, setCheck }) {
     const { cartList, setCartList } = useContext(CartContext);
 
     useEffect(() => {
-
+        // 로컬 스토리지 
         const savedCartList = JSON.parse(localStorage.getItem('cartList'));
         if (savedCartList) {
             setCartList(savedCartList);
@@ -16,6 +16,7 @@ function ShoppingCart({ check, setCheck }) {
 
     return (
         <>
+        {/* 맵 사용해 렌더링 */}
             {cartList.map((item, index) => (
                 <ValueReturn
                     key={index}

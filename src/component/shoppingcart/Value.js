@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import Stack from 'react-bootstrap/Stack';
+import { useContext, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'
-import Form from 'react-bootstrap/Form';
 import CartContext from '../productList/CartContext';
 import { useLayoutEffect } from 'react';
 
@@ -12,6 +10,7 @@ function removebtag(text) {
     return text.replace(/<\/?b>/g, '');
 }
 
+// 가격 , 추가
 function addCommas(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -25,11 +24,6 @@ function ValueReturn(props) {
     const { totalPrice, setTotalPrice } = useContext(CartContext);
 
 
-    function reset() {
-        setTotalPrice(0)
-        setquantityCount(0)
-    }
-
     useLayoutEffect(() => {
         let getItemPrice = localStorage.getItem('cartList')
         let cartList = JSON.parse(getItemPrice);
@@ -40,6 +34,7 @@ function ValueReturn(props) {
         setTotalPrice(localAddPrice);
     }, [setTotalPrice]);
 
+    // +버튼
     function plusButton() {
         setquantityCount(quantityCount + 1);
         if (totalPrice === 0) {
@@ -49,6 +44,7 @@ function ValueReturn(props) {
         }
     }
 
+    // -버튼
     function minusButton() {
         if (quantityCount > 1) {
             setquantityCount(quantityCount - 1);
@@ -56,20 +52,29 @@ function ValueReturn(props) {
         }
     }
 
+    // 삭제 버튼
     function delCartList() {
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const updatedCartList = cartList.filter(item => item.id !== props.id);
         localStorage.setItem('cartList', JSON.stringify(updatedCartList));
+        const deletedItemPrice = props.price * quantityCount;
+        setTotalPrice(prevTotalPrice => prevTotalPrice - deletedItemPrice);
         setIsDeleted(true);
     }
 
+    // 삭제됬으면 화면에 x
     if (isDeleted) {
         return null;
     }
 
-
     return (
-        <div className="product-item" style={{ display: 'flex', alignItems: 'center', backgroundColor: '#f9f9f9', padding: '20px', borderRadius: '10px', boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', marginBottom: '20px' }}>
+        <div className="product-item" style={{ display: 'flex', 
+        alignItems: 'center', 
+        backgroundColor: '#f9f9f9', 
+        padding: '20px', 
+        borderRadius: '10px', 
+        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+        marginBottom: '20px' }}>
             <div className="product-image" style={{ marginRight: '20px', flexShrink: 0 }}>
                 <img
                     src={props.image}
@@ -83,8 +88,18 @@ function ValueReturn(props) {
                 />
             </div>
             <div className="product-details" style={{ flexGrow: 1 }}>
-                <div className="product-title" style={{ fontSize: '20px', marginBottom: '10px', fontWeight: 'bold' }}>{titledel}</div>
-                <div className="product-price" style={{ marginBottom: '10px', fontSize: '18px', color: '#007bff' }}>{addCommas(props.price * quantityCount)}원</div>
+                <div className="product-title" 
+                style={{ fontSize: '20px', 
+                marginBottom: '10px', 
+                fontWeight: 'bold' 
+                }}>{titledel}</div>
+
+                <div className="product-price" 
+                style={{ marginBottom: '10px', 
+                fontSize: '18px', 
+                color: '#007bff' 
+                }}>{addCommas(props.price * quantityCount)}원</div>
+
                 <div className="product-quantity" style={{ marginBottom: '10px' }}>
                     <button onClick={minusButton} style={{ padding: '5px 10px', fontSize: '18px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '5px', marginRight: '5px' }}>-</button>
                     <input type='text' value={quantityCount} style={{ width: '40px', textAlign: 'center', fontSize: '16px', padding: '5px', border: '1px solid #ccc', borderRadius: '5px', margin: '0 5px' }} readOnly />
