@@ -35,7 +35,7 @@ function BottomStack() {
 
                     <Col className="text-center">
                         <div style={{ fontSize: '16px', marginBottom: '10px' }}>배송비</div>
-                        <div style={{ fontSize: '20px', color: '#007bff' }}>3000원</div>
+                        <div style={{ fontSize: '20px', color: '#007bff' }}>3,000원</div>
                     </Col>
 
                     <Col className="text-center">

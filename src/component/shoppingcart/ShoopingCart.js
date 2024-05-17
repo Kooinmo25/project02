@@ -16,20 +16,22 @@ function ShoppingCart({ check, setCheck }) {
 
     return (
         <>
-        {/* 맵 사용해 렌더링 */}
-            {cartList.map((item, index) => (
-                <ValueReturn
-                    key={index}
-                    title={item.title}
-                    image={item.image}
-                    price={item.price}
-                    id={item.id}
-                    check={check}
-                    setCheck={setCheck}
-                    
-                />
-            ))}
-
+            {/* 장바구니가 비어있는지 체크 */}
+            {cartList.length === 0 ? (
+                <div style={{display: 'flex', justifyContent: 'center'}}><span style={{fontSize: '30px', color: 'gray'}}>장바구니가 비어있습니다!</span></div>
+            ) : (
+                cartList.map((item, index) => (
+                    <ValueReturn
+                        key={index}
+                        title={item.title}
+                        image={item.image}
+                        price={item.price}
+                        id={item.id}
+                        check={check}
+                        setCheck={setCheck}
+                    />
+                ))
+            )}
         </>
     );
 }
