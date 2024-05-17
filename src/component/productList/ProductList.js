@@ -7,6 +7,7 @@ import "./ProductCompoReturn.css"
 import CartContext from './CartContext';
 import Button from 'react-bootstrap/Button';
 import ProductDetail from './ProductDetail';
+import { Alert } from 'bootstrap';
 
 
 
@@ -28,9 +29,14 @@ function ProductList(props) {
     const handleAddToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
-        cartList.push(item);
-        localStorage.setItem('cartList', JSON.stringify(cartList));
-        setCartList(cartList); // 장바구니 아이콘 옆의 숫자 업데이트
+        const isItemInCart = cartList.some(cartItem => cartItem.id === item.id);
+        if (isItemInCart) {
+            alert('이미 담겨 있는 상품입니다!')
+        } else {
+            cartList.push(item);
+            localStorage.setItem('cartList', JSON.stringify(cartList));
+            setCartList(cartList); // 장바구니 아이콘 옆의 숫자 업데이트
+        }
     };
 
 
