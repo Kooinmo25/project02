@@ -20,8 +20,8 @@ function GlobalNav() {
       <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
         <Container fluid>
           <Navbar.Brand href="/" className="mb-2">
-            <div>
-              <img src="./AquaSpritsLogo.png" alt='aqua sprits Logo' width='70' />
+            <div style={{margin: '0 '}}>
+              <img src="./AquaSpritsLogo.png" alt='aqua sprits Logo' width='50' />
             </div>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

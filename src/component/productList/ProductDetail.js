@@ -97,7 +97,7 @@ function ProductDetail({ props }) {
                                     position: 'absolute',
                                     left: `-${mousePosition.x * 1.5}px`,
                                     top: `-${mousePosition.y * 1.7}px`,
-                                    width: '400%',
+                                    width: '300%',
                                     height: 'auto',
                                 }}
                             />
