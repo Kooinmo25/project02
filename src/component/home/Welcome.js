@@ -15,7 +15,10 @@ function Welcome({list, setList}) {
                     <Carousel.Item key={index}>
                         <div className="d-flex justify-content-center align-items-center">
                             <div className="m-5">
-                                <GetPopularItem isMobile={isMobile} list={list} setList={setList} />
+                                <GetPopularItem 
+                                isMobile={isMobile} 
+                                list={list} 
+                                setList={setList} />
                             </div>
                         </div>
                     </Carousel.Item>
