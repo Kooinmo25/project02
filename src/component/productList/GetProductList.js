@@ -23,9 +23,8 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
         })
             .then(response => response.json())
             .then(json => setList(json.items))
-            console.log(pageNum)
 
-    }, [sortNum, pageNum, priceSort])
+    }, [sortNum, pageNum, priceSort, setList])
 
     return (
         <Row xs={1} md={2} lg={sortNum} className="g-4">
@@ -37,6 +36,7 @@ function GetProductList({ sortNum, pageNum, list, setList, priceSort }) {
                     price={item.lprice}
                     id={item.productId}
                     brand={item.brand}
+                    sortNum={sortNum}
                 />
             </Col>
             ))}

@@ -17,7 +17,7 @@ function addCommas(num) {
 function PopItemCard(props) {
     const commas = addCommas(props.price);
     const titleDel = removebtag(props.title);
-    const { cartList, setCartList } = useContext(CartContext);
+    const { setCartList } = useContext(CartContext);
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const [showModal, setShowModal] = useState(false);
 

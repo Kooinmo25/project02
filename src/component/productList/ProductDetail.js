@@ -21,19 +21,21 @@ function ProductDetail({ props }) {
     const titleDel = removebtag(props.title);
     const commas = addCommas(props.price);
 
-    const handleMouseMove = (e) => {
+    const mouseMove = (e) => {
         const MouselLocation = e.target.getBoundingClientRect(); // 현재 요소에 대한 위치값을 전달해주는 메서드
         const x = e.clientX - MouselLocation.left; 
         const y = e.clientY - MouselLocation.top;
         // console.log('top',rect.top, 'right', rect.right, 'bottom', rect.bottom, 'left', rect.left)
+        // console.log('x', x);
+        // console.log('y', y);
         setMousePosition({ x, y });
     };
     
-    const handleMouseEnter = () => {
+    const mouseEnter = () => {
         setInMouse(true);
     };
 
-    const handleMouseLeave = () => {
+    const mouseLeave = () => {
         setInMouse(false);
     };
     return (
@@ -61,9 +63,9 @@ function ProductDetail({ props }) {
                         height: '100%',
                         overflow: 'hidden',
                     }}
-                    onMouseMove={handleMouseMove}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
+                    onMouseMove={mouseMove}
+                    onMouseEnter={mouseEnter}
+                    onMouseLeave={mouseLeave}
                 >
                     <img
                         src={props.image}

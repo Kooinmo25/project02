@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand, list, setList, filteredItems = [] }) {
+function Get({ brand, setList, filteredItems = [] }) {
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 

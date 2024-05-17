@@ -1,5 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
-import Stack from 'react-bootstrap/Stack';
+import { useContext, useState } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import CloseButton from 'react-bootstrap/CloseButton';
 import './Value.css'

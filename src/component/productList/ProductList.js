@@ -3,11 +3,9 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import "./ProductCompoReturn.css"
 
-
 import CartContext from './CartContext';
 import Button from 'react-bootstrap/Button';
 import ProductDetail from './ProductDetail';
-import { Alert } from 'bootstrap';
 
 
 
@@ -24,9 +22,9 @@ function addCommas(num) {
 function ProductList(props) {
     const commas = addCommas(props.price)
     const titleDel = removebtag(props.title)
-    const { cartList, setCartList } = useContext(CartContext);
+    const { setCartList } = useContext(CartContext);
 
-    const handleAddToCart = () => {
+    const addToCart = () => {
         const item = { title: props.title, image: props.image, price: props.price, id: props.id, brand: props.brand };
         const cartList = JSON.parse(localStorage.getItem('cartList')) || [];
         const isItemInCart = cartList.some(cartItem => cartItem.id === item.id);
@@ -51,7 +49,7 @@ function ProductList(props) {
 
     return (
 
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', border: '4px solid white', borderRadius: '10px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: props.sortNum === 3 ? '70%' : '100%', height: '100%', border: '4px solid white', borderRadius: '10px' }}>
             <Col className='productList' style={{ width: '80%', height: "100%" }}>
                 <Card>
                     <Card.Img className='card-img' variant="top" src={props.image} />
@@ -65,7 +63,7 @@ function ProductList(props) {
                                 <ProductDetail props={props} />
                             </div>
                             <div style={{ marginLeft: '10px', display: 'inline-block' }}>
-                                <Button variant="info" size='m' as="input" type="button" value="장바구니 담기" onClick={handleAddToCart} />
+                                <Button variant="info" size='m' as="input" type="button" value="장바구니 담기" onClick={addToCart} />
                             </div>
                         </div>
 
