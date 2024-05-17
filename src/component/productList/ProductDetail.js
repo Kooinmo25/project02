@@ -38,6 +38,7 @@ function ProductDetail({ props }) {
     const mouseLeave = () => {
         setInMouse(false);
     };
+    
     return (
         <>
             <Button variant="primary" size="m" onClick={() => setLgShow(true)}>
@@ -94,8 +95,8 @@ function ProductDetail({ props }) {
                                 alt={titleDel}
                                 style={{
                                     position: 'absolute',
-                                    left: `-${mousePosition.x * 2}px`,
-                                    top: `-${mousePosition.y * 2}px`,
+                                    left: `-${mousePosition.x * 1.5}px`,
+                                    top: `-${mousePosition.y * 1.7}px`,
                                     width: '400%',
                                     height: 'auto',
                                 }}

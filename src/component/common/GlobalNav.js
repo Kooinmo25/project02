@@ -19,7 +19,11 @@ function GlobalNav() {
     <>
       <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
         <Container fluid>
-          <Navbar.Brand href="/" className="mb-2">Aqua Spirit</Navbar.Brand>
+          <Navbar.Brand href="/" className="mb-2">
+            <div>
+              <img src="./AquaSpritsLogo.png" alt='aqua sprits Logo' width='70' />
+            </div>
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
           <Navbar.Offcanvas
             id={`offcanvasNavbar-expand-${expand}`}
