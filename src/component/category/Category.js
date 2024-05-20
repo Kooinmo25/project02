@@ -8,36 +8,32 @@ function Category() {
     const [filteredItems, setFilteredItems] = useState([]);
     const [selectedButton, setSelectedButton] = useState(null);
     const [brand, setBrand] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
-    // 가격 필터
     function filterByPriceRange(minPrice, maxPrice) {
         const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
         setFilteredItems(priceTemp);
-        setSelectedButton(`${minPrice}-${maxPrice}`);  // 선택된 버튼 상태 업데이트
+        setSelectedButton(`${minPrice}-${maxPrice}`);
     }
 
-    // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category);
         setSelectedButton(category);
-        fetchItems();
+        showWaveEffect(() => fetchItems(category));
     };
 
     const getButtonClass = (button) => {
         return `button ${button} ${selectedButton === button ? 'selected' : ''}`;
     };
 
-    useEffect(() => {
-        fetchItems();
-    }, [brand]);
-
-    const fetchItems = () => {
-        if (brand) {
+    const fetchItems = (category) => {
+        if (category) {
+            setIsLoading(true);
             fetch(
-                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
+                `/v1/search/shop?query=${category}수영복&filter=used:false&sort=sim&display=100&start=1`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": clientId,
@@ -48,15 +44,25 @@ function Category() {
                 .then((json) => {
                     setList(json.items);
                     setFilteredItems(json.items);
-                });
+                    setIsLoading(false);
+                })
+                .catch(() => setIsLoading(false));
         }
+    };
+
+    const showWaveEffect = (callback) => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            callback();
+        }, 1000);
     };
 
     const buttons = [
         ['남성', '여성'],
         ['아레나', '나이키', '르망고', '배럴', '후그', '센티', '키치피치', '스웨이브', '비키니밴더', '엘르', '토네이도', '미즈노', '발리비키', '티막', '나인에프엑스', '아디다스', '리복'
-            , '스피도', 'UNKNOWN', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '아날도바시니', '쿠기'
-            , '제인코트', 'GANNI', 'H&M', '스키즈', 'TOTEME', '데이즈데이즈', '닉스원', '필로드', '헤링본', '돌핀', '티에스나인', '에르메스', '오스카', '알라이아 컷아웃', '샤넬', '구찌'],
+            , '스피도', '랠리', '레노마', '아쿠아티카', '티어', '제테스', '723후그', '엑스블루', '제이커스', '버버리', '캘빈클라인', '펑키타', '아날도바시니', '쿠기'
+            , 'GANNI', 'H&M', '스키즈', 'TOTEME', '데이즈데이즈', '닉스원', '필로드', '헤링본', '돌핀', '티에스나인', '에르메스', '오스카', '알라이아 컷아웃', '샤넬', '구찌'],
         ['빨강', '파랑', '초록', '노랑', '주황', '보라', '아이보리', '민트', '핑크', '화이트', '블랙'],
     ];
 
@@ -76,6 +82,13 @@ function Category() {
 
     return (
         <>
+            {isLoading && (
+                <div className="wave-container">
+                    <div className="wave"></div>
+                    <div className="wave wave2"></div>
+                    <div className="wave wave3"></div>
+                </div>
+            )}
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">
@@ -124,7 +137,7 @@ function Category() {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Get brand={brand} list={list} setList={setList} filteredItems={filteredItems} />
+                <Get filteredItems={filteredItems} isLoading={isLoading} />
             </Accordion>
         </>
     );
