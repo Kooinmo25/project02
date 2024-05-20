@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import ProductList from "../productList/ProductList";
 
-function Get({ brand, setList, filteredItems = [] }) {
+function Get({ brand, setList, filteredItems = [], isLoading }) {
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
@@ -21,11 +21,9 @@ function Get({ brand, setList, filteredItems = [] }) {
         }
     }, [brand]); // brand 값이 변경될 때마다 실행
 
-
-
     return (
         <>
-            {filteredItems.length > 0 ? ( // 필터링된 아이템으로 조건 변경
+            {isLoading ? null : ( // 로딩 중일 때는 아무것도 렌더링하지 않음
                 <Row xs={1} md={2} lg={4} className="g-4">
                     {filteredItems.map((item, index) => (
                         <Col key={index}>
@@ -37,9 +35,9 @@ function Get({ brand, setList, filteredItems = [] }) {
                         </Col>
                     ))}
                 </Row>
-            ) : null}
+            )}
         </>
-    )
+    );
 }
 
 export default Get;

@@ -8,36 +8,32 @@ function Category() {
     const [filteredItems, setFilteredItems] = useState([]);
     const [selectedButton, setSelectedButton] = useState(null);
     const [brand, setBrand] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     const clientId = "C88k7kKQEPtcbHOYYaRs";
     const clientSecret = "5XoMjg7Tdx";
 
-    // 가격 필터
     function filterByPriceRange(minPrice, maxPrice) {
         const priceTemp = list.filter(item => item.lprice >= minPrice && item.lprice <= maxPrice);
         setFilteredItems(priceTemp);
-        setSelectedButton(`${minPrice}-${maxPrice}`);  // 선택된 버튼 상태 업데이트
+        setSelectedButton(`${minPrice}-${maxPrice}`);
     }
 
-    // 카테고리 클릭 핸들러
     const handleCategoryClick = (category) => {
         setBrand(category);
         setSelectedButton(category);
-        fetchItems();
+        showWaveEffect(() => fetchItems(category));
     };
 
     const getButtonClass = (button) => {
         return `button ${button} ${selectedButton === button ? 'selected' : ''}`;
     };
 
-    useEffect(() => {
-        fetchItems();
-    }, [brand]);
-
-    const fetchItems = () => {
-        if (brand) {
+    const fetchItems = (category) => {
+        if (category) {
+            setIsLoading(true);
             fetch(
-                `/v1/search/shop?query=${brand}수영복&filter=used:false&sort=sim&display=100&start=1`, {
+                `/v1/search/shop?query=${category}수영복&filter=used:false&sort=sim&display=100&start=1`, {
                 method: "GET",
                 headers: {
                     "X-Naver-Client-Id": clientId,
@@ -48,8 +44,18 @@ function Category() {
                 .then((json) => {
                     setList(json.items);
                     setFilteredItems(json.items);
-                });
+                    setIsLoading(false);
+                })
+                .catch(() => setIsLoading(false));
         }
+    };
+
+    const showWaveEffect = (callback) => {
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+            callback();
+        }, 1000);
     };
 
     const buttons = [
@@ -76,6 +82,13 @@ function Category() {
 
     return (
         <>
+            {isLoading && (
+                <div className="wave-container">
+                    <div className="wave"></div>
+                    <div className="wave wave2"></div>
+                    <div className="wave wave3"></div>
+                </div>
+            )}
             <Accordion defaultActiveKey="0" className="main">
                 {/* 성별 */}
                 <Accordion.Item eventKey="0">
@@ -124,7 +137,7 @@ function Category() {
                         </div>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Get brand={brand} list={list} setList={setList} filteredItems={filteredItems} />
+                <Get filteredItems={filteredItems} isLoading={isLoading} />
             </Accordion>
         </>
     );
