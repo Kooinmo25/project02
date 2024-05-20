@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import CartContext from '../productList/CartContext';
 import './GlobalNav.css'
+import MusicPlayer from '../productList/MusicPlayer';
 
 function GlobalNav() {
   const expand = 'md';
@@ -45,11 +46,14 @@ function GlobalNav() {
                     <span style={{ color: 'white', fontSize: '16px', fontWeight: 'bold' }}>{cartItemCount}</span>
                   </div>
                 </Nav.Link>
+                <MusicPlayer />
+
               </Nav>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
+      
     </>
   );
 }
