@@ -11,8 +11,7 @@ function ShoppingCart({ check, setCheck }) {
         if (savedCartList) {
             setCartList(savedCartList);
         }
-        console.log(savedCartList)
-    }, [setCartList]);
+    }, [ setCartList ]);
 
     return (
         <>
