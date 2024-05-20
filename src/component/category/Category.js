@@ -82,8 +82,8 @@ function Category() {
                     <Accordion.Header className="categoryHeader">성별</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            {buttons[0].map((text) => (
-                                <button className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
+                            {buttons[0].map((text, index) => (
+                                <button key={index} className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
                             ))}
                         </div>
                     </Accordion.Body>
@@ -94,8 +94,8 @@ function Category() {
                     <Accordion.Header className="categoryHeader">브랜드</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            {buttons[1].map((text) => (
-                                <button className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
+                            {buttons[1].map((text, index) => (
+                                <button key={index} className={getButtonClass(text)} onClick={() => handleCategoryClick(text)}>{text}</button>
                             ))}
                         </div>
                     </Accordion.Body>
@@ -107,7 +107,7 @@ function Category() {
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
                             {buttons[2].map((text, index) => (
-                                <button className={`button ${colorClasses[index % colorClasses.length]}`} onClick={() => handleCategoryClick(text)}>{text}</button>
+                                <button key={index} className={`button ${colorClasses[index % colorClasses.length]}`} onClick={() => handleCategoryClick(text)}>{text}</button>
                             ))}
                         </div>
                     </Accordion.Body>
@@ -118,8 +118,8 @@ function Category() {
                     <Accordion.Header className="categoryHeader">가격</Accordion.Header>
                     <Accordion.Body className="categoryBody">
                         <div className="button-container">
-                            {priceRanges.map(({ min, max }) => (
-                                <button className={getButtonClass(`${min}-${max}`)} onClick={() => filterByPriceRange(min, max)}>{min.toLocaleString()}원 ~ {max.toLocaleString()}원</button>
+                            {priceRanges.map(({ min, max }, index) => (
+                                <button key={index} className={getButtonClass(`${min}-${max}`)} onClick={() => filterByPriceRange(min, max)}>{min.toLocaleString()}원 ~ {max.toLocaleString()}원</button>
                             ))}
                         </div>
                     </Accordion.Body>
