@@ -8,6 +8,7 @@ import Filter from '../category/Filter';
 import CartProvider from '../productList/CartProvider';
 import Welcome from '../home/Welcome.js'
 import Cartreturn from '../shoppingcart/Total.js';
+import './Layout.css'
 
 function Layout() {
     const [list, setList] = useState([]);
